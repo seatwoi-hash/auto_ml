@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка нескольких фото</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .upload-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area.drag-over {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Сетка для превью */
+        .previews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .preview-info {
+            padding: 8px;
+            background: white;
+            font-size: 12px;
+        }
+
+        .preview-filename {
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .preview-size {
+            color: #64748b;
+            font-size: 10px;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.1);
+            background: #dc2626;
+        }
+
+        .upload-stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stats-text {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .upload-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .upload-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .progress-item {
+            margin-bottom: 10px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        .batch-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .clear-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .clear-btn:hover {
+            transform: translateY(-2px);
+            background: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2 style="text-align: center; margin-bottom: 25px; color: #1e293b;">
+            Загрузите несколько фото
+        </h2>
+
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Перетащите фото сюда или кликните для выбора</div>
+            <div class="upload-hint">Поддерживаются JPG, PNG, GIF (макс. 10MB каждый)</div>
+            <input type="file" id="fileInput" accept="image/*" multiple>
+        </div>
+
+        <!-- Сетка превью -->
+        <div class="previews-grid" id="previewsGrid"></div>
+
+        <!-- Статистика и кнопки -->
+        <div class="upload-stats" id="uploadStats" style="display: none;">
+            <div class="stats-text" id="statsText"></div>
+            <div class="batch-actions">
+                <button class="clear-btn" id="clearBtn">Очистить все</button>
+                <button class="upload-btn" id="uploadBtn">Загрузить все</button>
+            </div>
+        </div>
+
+        <!-- Прогресс загрузки -->
+        <div class="progress-container" id="progressContainer"></div>
+
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const previewsGrid = document.getElementById('previewsGrid');
+        const uploadStats = document.getElementById('uploadStats');
+        const statsText = document.getElementById('statsText');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const message = document.getElementById('message');
+        const progressContainer = document.getElementById('progressContainer');
+
+        let selectedFiles = []; // Массив выбранных файлов
+
+        // Клик для выбора файлов
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        // Выбор файлов
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            addFiles(files);
+        });
+
+        // Drag & drop нескольких файлов
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const files = Array.from(e.dataTransfer.files);
+            addFiles(files);
+        });
+
+        // Добавление файлов
+        function addFiles(files) {
+            const validFiles = [];
+            const errors = [];
+
+            files.forEach(file => {
+                // Проверка типа
+                if (!file.type.startsWith('image/')) {
+                    errors.push(`${file.name}: не является изображением`);
+                    return;
+                }
+
+                // Проверка размера (10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    errors.push(`${file.name}: превышает 10MB`);
+                    return;
+                }
+
+                // Проверка на дубликаты
+                if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                    validFiles.push(file);
+                }
+            });
+
+            if (validFiles.length > 0) {
+                selectedFiles.push(...validFiles);
+                updatePreviews();
+
+                if (errors.length > 0) {
+                    showMessage(`Добавлено ${validFiles.length} файлов. Ошибки: ${errors.join(', ')}`, 'error');
+                } else {
+                    showMessage(`Добавлено ${validFiles.length} файлов`, 'success');
+                }
+            } else if (errors.length > 0) {
+                showMessage(`Ошибки: ${errors.join(', ')}`, 'error');
+            }
+        }
+
+        // Обновление превью
+        function updatePreviews() {
+            if (selectedFiles.length === 0) {
+                previewsGrid.innerHTML = '';
+                uploadStats.style.display = 'none';
+                return;
+            }
+
+            uploadStats.style.display = 'flex';
+            statsText.textContent = `Выбрано файлов: ${selectedFiles.length} (${formatTotalSize()})`;
+
+            previewsGrid.innerHTML = selectedFiles.map((file, index) => `
+                <div class="preview-item" data-index="${index}">
+                    <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+                    <div class="preview-info">
+                        <div class="preview-filename" title="${file.name}">${truncateFilename(file.name)}</div>
+                        <div class="preview-size">${formatFileSize(file.size)}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFile(${index})">×</button>
+                </div>
+            `).join('');
+        }
+
+        // Удаление одного файла
+        window.removeFile = function(index) {
+            selectedFiles.splice(index, 1);
+            updatePreviews();
+
+            if (selectedFiles.length === 0) {
+                fileInput.value = '';
+                showMessage('Все файлы удалены', 'success');
+            }
+        };
+
+        // Очистка всех файлов
+        clearBtn.addEventListener('click', () => {
+            selectedFiles = [];
+            fileInput.value = '';
+            updatePreviews();
+            progressContainer.innerHTML = '';
+            progressContainer.style.display = 'none';
+            showMessage('Все файлы удалены', 'success');
+        });
+
+        // Загрузка всех файлов
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) return;
+
+            uploadBtn.disabled = true;
+            clearBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            progressContainer.innerHTML = '';
+
+            // Создаем прогресс-бары для каждого файла
+            const progresses = {};
+            selectedFiles.forEach((file, index) => {
+                const progressId = `progress-${index}`;
+                progresses[index] = { element: null, fill: null };
+
+                const progressDiv = document.createElement('div');
+                progressDiv.className = 'progress-item';
+                progressDiv.innerHTML = `
+                    <div class="progress-header">
+                        <span>${truncateFilename(file.name, 30)}</span>
+                        <span class="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="${progressId}-fill"></div>
+                    </div>
+                `;
+                progressContainer.appendChild(progressDiv);
+
+                progresses[index].fill = document.getElementById(`${progressId}-fill`);
+            });
+
+            // Загружаем файлы последовательно
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                const formData = new FormData();
+                formData.append('files', file);
+
+                try {
+                    const response = await fetch('/upload/', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        successCount++;
+                        updateProgressBar(progresses[i].fill, 100);
+                        showMessage(`Загружено ${successCount} из ${selectedFiles.length}`, 'success');
+                    } else {
+                        errorCount++;
+                        updateProgressBar(progresses[i].fill, 100, '#ef4444');
+                        showMessage(`Ошибка при загрузке ${file.name}`, 'error');
+                    }
+                } catch (error) {
+                    errorCount++;
+                    updateProgressBar(progresses[i].fill, 100, '#ef4444');
+                    showMessage(`Ошибка сети при загрузке ${file.name}`, 'error');
+                }
+            }
+
+            // Итоговое сообщение
+            setTimeout(() => {
+                if (errorCount === 0) {
+                    showMessage(`✅ Успешно загружено ${successCount} файлов!`, 'success');
+                    // Очищаем форму после успешной загрузки
+                    setTimeout(() => {
+                        if (confirm('Все файлы загружены. Очистить список?')) {
+                            clearBtn.click();
+                        }
+                    }, 1000);
+                } else {
+                    showMessage(`⚠️ Загружено: ${successCount}, Ошибок: ${errorCount}`, 'error');
+                }
+
+                uploadBtn.disabled = false;
+                clearBtn.disabled = false;
+            }, 500);
+        });
+
+        function updateProgressBar(element, percent, color = null) {
+            element.style.width = percent + '%';
+            if (color) {
+                element.style.background = color;
+            }
+            // Обновляем процент в заголовке
+            const progressItem = element.closest('.progress-item');
+            const percentSpan = progressItem.querySelector('.progress-percent');
+            if (percentSpan) {
+                percentSpan.textContent = Math.round(percent) + '%';
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function formatTotalSize() {
+            const total = selectedFiles.reduce((sum, file) => sum + file.size, 0);
+            return formatFileSize(total);
+        }
+
+        function truncateFilename(filename, maxLength = 20) {
+            if (filename.length <= maxLength) return filename;
+            return filename.substring(0, maxLength - 3) + '...';
+        }
+
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

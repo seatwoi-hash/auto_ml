@@ -1,8 +1,10 @@
 from nc_py_api import AsyncNextcloud
-from urllib.parse import quote
 import tempfile
 from pathlib import Path
-import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class NextcloudService:
@@ -15,6 +17,7 @@ class NextcloudService:
         self._connect()
 
     def _connect(self):
+        logger.info("Connecting to Nextcloud")
         if self.nc is None:
             try:
                 self.nc = AsyncNextcloud(
@@ -23,57 +26,97 @@ class NextcloudService:
                     nc_auth_pass=self.password
                 )
             except Exception as e:
-                print(f"Ошибка инициализации клиента Nextcloud: {e}")
+                logger.error(f"Ошибка инициализации клиента Nextcloud: {e}")
                 raise e
 
-    def create_folder(self, folder_path: str) -> bool:
-
+    async def create_folder(self, folder_path: str) -> bool:
         if not self.nc:
             return False
 
         try:
-            if self.nc.files.is_exists(folder_path):
-                return True
+            folder_path = folder_path.strip("/")
 
-            self.nc.files.mkdir(folder_path)
+            logger.info(
+                f"create_folder: {folder_path}"
+            )
+
+            try:
+                await self.nc.files.mkdir(folder_path)
+                logger.info(
+                    f"folder created: {folder_path}"
+                )
+
+            except Exception as e:
+                # Папка уже существует —
+                # это не ошибка
+                logger.info(
+                    f"mkdir skipped: {str(e)}"
+                )
+
             return True
 
-        except Exception as e:
+        except Exception:
+            logger.exception(
+                "create_folder failed"
+            )
             return False
 
-
-    async def upload_photo(self, file_bytes: bytes, filename: str, remote_folder: str = "/Photos") -> dict:
+    async def upload_photo(
+            self,
+            file_bytes: bytes,
+            filename: str,
+            remote_folder: str = "Photos"
+    ) -> dict:
 
         if not self.nc:
-            return {"success": False, "error": "Нет подключения"}
-
-        temp_path = None
+            return {
+                "success": False,
+                "error": "Нет подключения"
+            }
 
         try:
-            file_extension = Path(filename).suffix
-            print(type(file_bytes))
-            with tempfile.NamedTemporaryFile(delete=False, suffix=file_extension) as tmp_file:
-                tmp_file.write(file_bytes)
-                temp_path = tmp_file.name
-            print(remote_folder)
+            folder_created = await self.create_folder(
+                remote_folder
+            )
 
-            path = f"{remote_folder.rstrip('/')}/{filename}"
-            # Синхронная загрузка (но в асинхронной функции можно)
+            if not folder_created:
+                return {
+                    "success": False,
+                    "error":
+                        f"Не удалось создать "
+                        f"папку {remote_folder}"
+                }
+
+            path = (
+                f"{remote_folder.rstrip('/')}/"
+                f"{filename}"
+            )
+
+            logger.info(f"upload path: {path}")
+
             await self.nc.files.upload(
                 path,
                 file_bytes
             )
 
+            logger.info("upload success")
+
             return {
                 "success": True,
                 "filename": filename,
-                "remote_path": remote_folder,
+                "remote_path": path,
                 "size": len(file_bytes)
             }
+
         except Exception as e:
-            import traceback
-            traceback.print_exc()
-            return {"success": False, "error": str(e)}
+            logger.exception(
+                "upload failed"
+            )
+
+            return {
+                "success": False,
+                "error": str(e)
+            }
 
     async def close(self):
             if self.nc:

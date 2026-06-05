@@ -7,12 +7,19 @@ from pathlib import Path
 import uuid
 import os
 from dotenv import load_dotenv
+import logging
+from service_ml import Eval_photo
+
 
 from nextcloud_service import NextcloudService
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 load_dotenv()
+
+classifier = Eval_photo(model_path='model.pth')
 
 nextcloud_service = NextcloudService(
     url=os.getenv("NEXTCLOUD_URL"),
@@ -67,47 +74,65 @@ async def upload_single_file(file: UploadFile = File(...)):
     }
 
 
-@app.post("/upload/")
-async def upload_multiple_files(files: List[UploadFile] = File(...)):
-    """Загрузка нескольких файлов одновременно"""
-    uploaded_files = []
-    errors = []
-
-    for file in files:
-        if not file.content_type.startswith("image/"):
-            errors.append(f"{file.filename}: не изображение")
-            continue
-
-        # Проверка размера (10MB)
-        if file.size > 10 * 1024 * 1024:
-            errors.append(f"{file.filename}: превышает 10MB")
-            continue
-
-        # Генерируем уникальное имя
-        file_extension = Path(file.filename).suffix
-        unique_filename = f"{uuid.uuid4()}{file_extension}"
-        file_path = UPLOAD_DIR / unique_filename
-
-        print(unique_filename)
-        # Сохраняем файл
-        try:
-            file_bytes = await file.read()
-            result = await nextcloud_service.upload_photo(
-                file_bytes=file_bytes,
-                filename=unique_filename,
-                remote_folder="/Photos"
-            )
-
-        except Exception as e:
-            errors.append(f"{file.filename}: ошибка сохранения - {str(e)}")
-
-    return {
-        "message": f"Загружено {len(uploaded_files)} из {len(files)} файлов",
-        "files": uploaded_files,
-        "errors": errors,
-        "total": len(files),
-        "success": len(uploaded_files)
-    }
+# @app.post("/upload/")
+# async def upload_multiple_files(files: List[UploadFile] = File(...)):
+#     """Загрузка нескольких файлов одновременно"""
+#     uploaded_files = []
+#     errors = []
+#
+#     for file in files:
+#         # if not file.content_type.startswith("image/"):
+#         #     errors.append(f"{file.filename}: не изображение")
+#         #     continue
+#         file_bytes = await file.read()
+#         # Проверка размера (10MB)
+#         if file.size > 10 * 1024 * 1024:
+#             errors.append(f"{file.filename}: превышает 10MB")
+#             continue
+#
+#         file_extension = Path(file.filename).suffix
+#         unique_filename = f"{uuid.uuid4()}{file_extension}"
+#
+#         logger.info(unique_filename)
+#         results = []
+#
+#         prediction = await classifier.predict_from_bytes(
+#             file_bytes=file_bytes,
+#             filename=file.filename
+#         )
+#
+#
+#         if not prediction["success"]:
+#             results.append({
+#                 "original_name": file.filename,
+#                 "success": False,
+#                 "error": prediction.get("error", "Ошибка классификации")
+#             })
+#             continue
+#
+#         class_name = prediction["class_name"]
+#         confidence = prediction["confidence"]
+#         logger.info("class_name")
+#
+#         # Сохраняем файл
+#         try:
+#             result = await nextcloud_service.upload_photo(
+#                 file_bytes=file_bytes,
+#                 filename=unique_filename,
+#                 remote_folder=class_name
+#             )
+#             logger.info("yes")
+#
+#         except Exception as e:
+#             errors.append(f"{file.filename}: ошибка сохранения - {str(e)}")
+#
+#     return {
+#         "message": f"Загружено {len(uploaded_files)} из {len(files)} файлов",
+#         "files": uploaded_files,
+#         "errors": errors,
+#         "total": len(files),
+#         "success": len(uploaded_files)
+#     }
 
 
 @app.get("/uploads/{filename}")
@@ -155,6 +180,89 @@ async def delete_all_files():
             deleted += 1
     return {"message": f"Удалено {deleted} файлов"}
 
+@app.post("/upload/")
+async def upload_multiple_files(
+    files: List[UploadFile] = File(...)
+):
+    uploaded_files = []
+    errors = []
+
+    for file in files:
+        try:
+            file_bytes = await file.read()
+
+            # Проверка размера
+            if len(file_bytes) > 10 * 1024 * 1024:
+                errors.append(
+                    f"{file.filename}: превышает 10MB"
+                )
+                continue
+
+            file_extension = Path(file.filename).suffix
+            unique_filename = (
+                f"{uuid.uuid4()}{file_extension}"
+            )
+
+            logger.info(
+                f"Processing: {file.filename}"
+            )
+
+            prediction = await classifier.predict_from_bytes(
+                file_bytes=file_bytes,
+                filename=file.filename
+            )
+
+            if not prediction["success"]:
+                errors.append(
+                    f"{file.filename}: "
+                    f"{prediction.get('error')}"
+                )
+                continue
+
+            class_name = prediction["class_name"]
+            confidence = prediction["confidence"]
+
+            logger.info(
+                f"class={class_name}, "
+                f"confidence={confidence}"
+            )
+
+            # upload в Nextcloud
+            result = await nextcloud_service.upload_photo(
+                file_bytes=file_bytes,
+                filename=unique_filename,
+                remote_folder=class_name
+            )
+
+            logger.info(f"Uploaded: {result}")
+
+            uploaded_files.append({
+                "original_name": file.filename,
+                "stored_name": unique_filename,
+                "class_name": class_name,
+                "confidence": confidence,
+                "success": True
+            })
+
+        except Exception as e:
+            logger.exception(
+                "Ошибка загрузки"
+            )
+
+            errors.append(
+                f"{file.filename}: {str(e)}"
+            )
+
+    return {
+        "message":
+            f"Загружено "
+            f"{len(uploaded_files)} "
+            f"из {len(files)} файлов",
+        "files": uploaded_files,
+        "errors": errors,
+        "total": len(files),
+        "success": len(uploaded_files)
+    }
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=80, reload=True)
+    uvicorn.run(app, host="localhost", port=8877, reload=True)

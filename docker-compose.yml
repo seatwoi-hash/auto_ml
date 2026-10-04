@@ -22,8 +22,8 @@ services:
     build: .
     environment:
       NEXTCLOUD_URL: http://nextcloud:80
-      NEXTCLOUD_USER: ${NEXTCLOUD_ADMIN_USER:?NEXTCLOUD_ADMIN_USER must be set}
-      NEXTCLOUD_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD:?NEXTCLOUD_ADMIN_PASSWORD must be set}
+      NEXTCLOUD_USER: ${NEXTCLOUD_USER:?NEXTCLOUD_USER must be set}
+      NEXTCLOUD_PASSWORD: ${NEXTCLOUD_PASSWORD:?NEXTCLOUD_PASSWORD must be set}
       API_KEY: ${API_KEY:?API_KEY must be set}
       MODEL_PATH: /app/model.pth
       MAX_FILE_SIZE: ${MAX_FILE_SIZE:-10485760}
@@ -59,8 +59,8 @@ services:
       POSTGRES_USER: ${NEXTCLOUD_DB_USER:-nextcloud}
       POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?NEXTCLOUD_DB_PASSWORD must be set}
 
-      NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_ADMIN_USER:?NEXTCLOUD_ADMIN_USER must be set}
-      NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD:?NEXTCLOUD_ADMIN_PASSWORD must be set}
+      NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_USER:?NEXTCLOUD_USER must be set}
+      NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_PASSWORD:?NEXTCLOUD_PASSWORD must be set}
       NEXTCLOUD_TRUSTED_DOMAINS: |
         localhost
         127.0.0.1
@@ -73,7 +73,7 @@ services:
       NEXTCLOUD_BACKGROUNDJOBS_MODE: "ajax"
       NEXTCLOUD_AUTOINSTALL: "true"
     ports:
-      - "30540:80"
+      - "${NEXTCLOUD_PORT:-30540}:80"
     volumes:
       - nextcloud_data:/var/www/html/data
       - nextcloud_config:/var/www/html/config

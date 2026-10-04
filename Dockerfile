@@ -5,7 +5,7 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1
 
-WORKDIR /build
+WORKDIR /app
 RUN pip install poetry==2.5.1
 COPY pyproject.toml poetry.lock ./
 RUN poetry install --only main --no-root
@@ -21,7 +21,7 @@ RUN groupadd --system app \
     && useradd --system --gid app --create-home app
 
 WORKDIR /app
-COPY --from=builder /build/.venv /app/.venv
+COPY --from=builder /app/.venv /app/.venv
 
 COPY --chown=app:app app.py nextcloud_service.py schemas.py service_ml.py settings.py index.html ./
 RUN mkdir -p /app/uploads && chown app:app /app/uploads

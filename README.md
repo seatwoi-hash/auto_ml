@@ -226,14 +226,15 @@ cp .env.example .env
 | Переменная | Назначение |
 |---|---|
 | `NEXTCLOUD_DB_PASSWORD` | пароль PostgreSQL Nextcloud |
-| `NEXTCLOUD_ADMIN_USER` | администратор Nextcloud |
-| `NEXTCLOUD_ADMIN_PASSWORD` | пароль администратора Nextcloud |
+| `NEXTCLOUD_USER` | пользователь Nextcloud |
+| `NEXTCLOUD_PASSWORD` | пароль пользователя Nextcloud |
 | `API_KEY` | ключ доступа к файловому API, минимум 16 символов |
 | `CORS_ORIGINS` | разрешённые origin через запятую |
 | `MAX_FILE_SIZE` | максимальный размер файла в байтах |
 | `MAX_FILES_PER_REQUEST` | максимальное число файлов в запросе |
 | `NEXTCLOUD_TIMEOUT` | timeout запроса к Nextcloud |
 | `NEXTCLOUD_RETRY_ATTEMPTS` | число повторных попыток |
+| `NEXTCLOUD_PORT` | внешний порт Nextcloud |
 
 Реальный `.env` исключён из Git и Docker build context.
 
@@ -247,7 +248,7 @@ docker compose up -d --build
 
 - веб-интерфейс и FastAPI: <http://localhost:8877>;
 - документация API: <http://localhost:8877/docs>;
-- Nextcloud: <http://localhost:30540>;
+- Nextcloud: `http://localhost:${NEXTCLOUD_PORT}` (локально сейчас порт `30541`);
 - liveness: <http://localhost:8877/health/live>;
 - readiness: <http://localhost:8877/health/ready>.
 

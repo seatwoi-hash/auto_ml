@@ -1,0 +1,9 @@
+/my_dataset/
+/.env
+/*.pth
+/.idea/
+/.pytest_cache/
+/.venv/
+/.DS_Store
+__pycache__/
+*.py[cod]

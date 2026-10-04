@@ -1,0 +1,69 @@
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+fastapi = "0.136.3"
+nc-py-api = "0.30.1"
+pillow = "12.2.0"
+pydantic = "2.13.4"
+python-dotenv = "1.2.2"
+python-multipart = "0.0.29"
+torch = [
+    { version = "2.12.0", markers = "sys_platform != 'linux'" },
+    { version = "2.12.0+cpu", source = "pytorch-cpu", markers = "sys_platform == 'linux'" },
+]
+torchvision = [
+    { version = "0.27.0", markers = "sys_platform != 'linux'" },
+    { version = "0.27.0+cpu", source = "pytorch-cpu", markers = "sys_platform == 'linux'" },
+]
+uvicorn = "0.48.0"
+
+[tool.poetry.group.training]
+optional = true
+
+[tool.poetry.group.training.dependencies]
+numpy = "2.4.6"
+optuna = "4.9.0"
+scikit-learn = "1.9.0"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "4.6.2"
+pytest = "9.0.3"
+pytest-asyncio = "1.4.0"
+pytest-mock = "3.15.1"
+pyyaml = "6.0.3"
+ruff = "0.16.10"
+
+[[tool.poetry.source]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+extend-exclude = ["my_dataset", ".venv", ".idea"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"app.py" = ["B008"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+markers = ["asyncio: marks tests as async"]

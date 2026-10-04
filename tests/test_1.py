@@ -1,14 +1,15 @@
-import pytest
-
 from unittest.mock import AsyncMock, MagicMock, patch
-from nc_py_api import AsyncNextcloud
+
+import pytest
+from nc_py_api import AsyncNextcloud, NextcloudException
+
 from nextcloud_service import NextcloudService
 
 
 @pytest.fixture
 def mock_nextcloud():
     """Фикстура с мок-клиентом Nextcloud"""
-    with patch('nextcloud_service.AsyncNextcloud') as MockAsyncNextcloud:
+    with patch("nextcloud_service.AsyncNextcloud") as MockAsyncNextcloud:
         mock_nc = AsyncMock(spec=AsyncNextcloud)
         mock_nc.files = AsyncMock()
         mock_nc.files.mkdir = AsyncMock()
@@ -23,45 +24,38 @@ def mock_nextcloud():
 def nextcloud_service(mock_nextcloud):
     """Фикстура с сервисом Nextcloud"""
     service = NextcloudService(
-        url="https://nextcloud.example.com",
-        username="test_user",
-        password="test_pass"
+        url="https://nextcloud.example.com", username="test_user", password="test_pass"
     )
     service.nc = mock_nextcloud
     return service
 
 
 class TestNextcloudService:
-
     def test_init_success(self):
         """Тест успешной инициализации"""
-        with patch('nextcloud_service.AsyncNextcloud') as MockAsyncNextcloud:
+        with patch("nextcloud_service.AsyncNextcloud") as MockAsyncNextcloud:
             mock_nc = MagicMock()
             MockAsyncNextcloud.return_value = mock_nc
 
             service = NextcloudService(
-                url="https://test.com",
-                username="user",
-                password="pass"
+                url="https://test.com", username="user", password="pass"
             )
 
             MockAsyncNextcloud.assert_called_once_with(
                 nextcloud_url="https://test.com",
                 nc_auth_user="user",
-                nc_auth_pass="pass"
+                nc_auth_pass="pass",
             )
             assert service.nc is not None
 
     def test_init_failure(self):
         """Тест ошибки инициализации"""
-        with patch('nextcloud_service.AsyncNextcloud') as MockAsyncNextcloud:
+        with patch("nextcloud_service.AsyncNextcloud") as MockAsyncNextcloud:
             MockAsyncNextcloud.side_effect = Exception("Connection failed")
 
             with pytest.raises(Exception, match="Connection failed"):
                 NextcloudService(
-                    url="https://test.com",
-                    username="user",
-                    password="pass"
+                    url="https://test.com", username="user", password="pass"
                 )
 
     @pytest.mark.asyncio
@@ -84,12 +78,29 @@ class TestNextcloudService:
     async def test_create_folder_already_exists(self, nextcloud_service):
         """Тест создания уже существующей папки"""
         from nc_py_api import NextcloudException
-        nextcloud_service.nc.files.mkdir.side_effect = NextcloudException("Folder exists")
+
+        nextcloud_service.nc.files.mkdir.side_effect = NextcloudException(
+            status_code=405, reason="Folder exists"
+        )
 
         result = await nextcloud_service.create_folder("existing/folder")
 
         assert result is True  # Должно вернуть True, так как папка уже существует
         nextcloud_service.nc.files.mkdir.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_create_folder_does_not_hide_permission_error(
+        self, nextcloud_service
+    ):
+        from nc_py_api import NextcloudException
+
+        nextcloud_service.nc.files.mkdir.side_effect = NextcloudException(
+            status_code=403, reason="Forbidden"
+        )
+
+        result = await nextcloud_service.create_folder("private")
+
+        assert result is False
 
     @pytest.mark.asyncio
     async def test_create_folder_no_connection(self, nextcloud_service):
@@ -111,9 +122,7 @@ class TestNextcloudService:
         nextcloud_service.create_folder = AsyncMock(return_value=True)
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename,
-            remote_folder=remote_folder
+            file_bytes=file_bytes, filename=filename, remote_folder=remote_folder
         )
 
         assert result["success"] is True
@@ -123,8 +132,7 @@ class TestNextcloudService:
 
         nextcloud_service.create_folder.assert_called_once_with(remote_folder)
         nextcloud_service.nc.files.upload.assert_called_once_with(
-            "Photos/photo.jpg",
-            file_bytes
+            "Photos/photo.jpg", file_bytes
         )
 
     @pytest.mark.asyncio
@@ -137,9 +145,7 @@ class TestNextcloudService:
         nextcloud_service.create_folder = AsyncMock(return_value=True)
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename,
-            remote_folder=remote_folder
+            file_bytes=file_bytes, filename=filename, remote_folder=remote_folder
         )
 
         assert result["success"] is True
@@ -155,8 +161,7 @@ class TestNextcloudService:
         nextcloud_service.create_folder = AsyncMock(return_value=False)
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename
+            file_bytes=file_bytes, filename=filename
         )
 
         assert result["success"] is False
@@ -169,8 +174,7 @@ class TestNextcloudService:
         nextcloud_service.nc = None
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=b"test",
-            filename="test.jpg"
+            file_bytes=b"test", filename="test.jpg"
         )
 
         assert result["success"] is False
@@ -183,15 +187,46 @@ class TestNextcloudService:
         filename = "photo.jpg"
 
         nextcloud_service.create_folder = AsyncMock(return_value=True)
-        nextcloud_service.nc.files.upload.side_effect = Exception("Upload failed")
+        nextcloud_service.nc.files.upload.side_effect = NextcloudException(
+            status_code=400, reason="Upload failed"
+        )
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename
+            file_bytes=file_bytes, filename=filename
         )
 
         assert result["success"] is False
-        assert result["error"] == "Upload failed"
+        assert "Upload failed" in result["error"]
+
+    @pytest.mark.asyncio
+    async def test_upload_retries_transient_nextcloud_error(
+        self, nextcloud_service, monkeypatch
+    ):
+        from nc_py_api import NextcloudException
+
+        nextcloud_service.create_folder = AsyncMock(return_value=True)
+        nextcloud_service.nc.files.upload.side_effect = [
+            NextcloudException(status_code=503, reason="Unavailable"),
+            None,
+        ]
+        sleep = AsyncMock()
+        monkeypatch.setattr("nextcloud_service.asyncio.sleep", sleep)
+
+        result = await nextcloud_service.upload_photo(b"data", "photo.jpg")
+
+        assert result["success"] is True
+        assert nextcloud_service.nc.files.upload.call_count == 2
+        sleep.assert_awaited_once_with(0.5)
+
+    @pytest.mark.asyncio
+    async def test_healthcheck_reports_nextcloud_failure(self, nextcloud_service):
+        from nc_py_api import NextcloudException
+
+        nextcloud_service._get_capabilities = AsyncMock(
+            side_effect=NextcloudException(status_code=401, reason="Unauthorized")
+        )
+
+        assert await nextcloud_service.healthcheck() is False
 
     @pytest.mark.asyncio
     async def test_upload_photo_large_file(self, nextcloud_service):
@@ -203,8 +238,7 @@ class TestNextcloudService:
         nextcloud_service.create_folder = AsyncMock(return_value=True)
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename
+            file_bytes=file_bytes, filename=filename
         )
 
         assert result["success"] is True
@@ -220,9 +254,7 @@ class TestNextcloudService:
         nextcloud_service.create_folder = AsyncMock(return_value=True)
 
         result = await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename,
-            remote_folder=remote_folder
+            file_bytes=file_bytes, filename=filename, remote_folder=remote_folder
         )
 
         assert result["success"] is True
@@ -250,10 +282,7 @@ class TestNextcloudService:
 
         nextcloud_service.create_folder = AsyncMock(return_value=True)
 
-        await nextcloud_service.upload_photo(
-            file_bytes=file_bytes,
-            filename=filename
-        )
+        await nextcloud_service.upload_photo(file_bytes=file_bytes, filename=filename)
 
         # Проверяем, что переданные байты не изменились
         call_args = nextcloud_service.nc.files.upload.call_args[0]
@@ -267,13 +296,12 @@ class TestNextcloudService:
         files = [
             (b"data1", "file1.jpg"),
             (b"data2", "file2.jpg"),
-            (b"data3", "file3.jpg")
+            (b"data3", "file3.jpg"),
         ]
 
         for file_bytes, filename in files:
             result = await nextcloud_service.upload_photo(
-                file_bytes=file_bytes,
-                filename=filename
+                file_bytes=file_bytes, filename=filename
             )
             assert result["success"] is True
 
@@ -284,24 +312,17 @@ class TestNextcloudService:
 @pytest.mark.asyncio
 async def test_integration_with_mock():
     """Интеграционный тест с полным моком"""
-    service = NextcloudService(
-        url="https://test.com",
-        username="user",
-        password="pass"
-    )
+    service = NextcloudService(url="https://test.com", username="user", password="pass")
 
-    with patch.object(service, '_connect'):
-        service.nc = AsyncMock()
-        service.nc.files = AsyncMock()
-        service.nc.files.mkdir = AsyncMock()
-        service.nc.files.upload = AsyncMock()
+    service.nc = AsyncMock()
+    service.nc.files = AsyncMock()
+    service.nc.files.mkdir = AsyncMock()
+    service.nc.files.upload = AsyncMock()
 
-        # Мокаем create_folder через патч
-        with patch.object(service, 'create_folder', AsyncMock(return_value=True)):
-            result = await service.upload_photo(
-                file_bytes=b"integration test",
-                filename="integration.jpg"
-            )
+    with patch.object(service, "create_folder", AsyncMock(return_value=True)):
+        result = await service.upload_photo(
+            file_bytes=b"integration test", filename="integration.jpg"
+        )
 
-            assert result["success"] is True
-            assert result["remote_path"] == "Photos/integration.jpg"
+        assert result["success"] is True
+        assert result["remote_path"] == "Photos/integration.jpg"

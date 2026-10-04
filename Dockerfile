@@ -1,28 +1,32 @@
-# Dockerfile
-FROM python:3.11-slim
+FROM python:3.11-slim AS builder
 
-# Устанавливаем рабочую директорию
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1
+
+WORKDIR /build
+RUN pip install poetry==2.5.1
+COPY pyproject.toml poetry.lock ./
+RUN poetry install --only main --no-root
+
+
+FROM python:3.11-slim AS runtime
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH="/app/.venv/bin:${PATH}"
+
+RUN groupadd --system app \
+    && useradd --system --gid app --create-home app
+
 WORKDIR /app
+COPY --from=builder /build/.venv /app/.venv
 
-# Устанавливаем системные зависимости
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+COPY --chown=app:app app.py nextcloud_service.py schemas.py service_ml.py settings.py index.html ./
+RUN mkdir -p /app/uploads && chown app:app /app/uploads
 
-# Копируем requirements.txt
-COPY requirements.txt .
-
-# Устанавливаем Python зависимости
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Копируем весь проект
-COPY . .
-
-# Создаем папку для базы данных
-RUN mkdir -p /data
-
-# Открываем порт
+USER app
 EXPOSE 8877
 
-# Команда для запуска
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8877"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8877", "--no-access-log"]

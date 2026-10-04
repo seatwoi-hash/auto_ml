@@ -249,6 +249,12 @@
         <!-- Сетка превью -->
         <div class="previews-grid" id="previewsGrid"></div>
 
+        <label for="apiKey" style="display: block; margin-top: 20px; color: #475569;">
+            API key
+        </label>
+        <input id="apiKey" type="password" autocomplete="current-password"
+               style="display: block; width: 100%; margin-top: 6px; padding: 10px;">
+
         <!-- Статистика и кнопки -->
         <div class="upload-stats" id="uploadStats" style="display: none;">
             <div class="stats-text" id="statsText"></div>
@@ -274,6 +280,7 @@
         const clearBtn = document.getElementById('clearBtn');
         const message = document.getElementById('message');
         const progressContainer = document.getElementById('progressContainer');
+        const apiKeyInput = document.getElementById('apiKey');
 
         let selectedFiles = []; // Массив выбранных файлов
 
@@ -388,6 +395,11 @@
         // Загрузка всех файлов
         uploadBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) return;
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+                showMessage('Введите API key', 'error');
+                return;
+            }
 
             uploadBtn.disabled = true;
             clearBtn.disabled = true;
@@ -428,17 +440,20 @@
                 try {
                     const response = await fetch('/upload/', {
                         method: 'POST',
+                        headers: {'X-API-Key': apiKey},
                         body: formData
                     });
 
-                    if (response.ok) {
+                    const payload = await response.json();
+                    if (response.ok && payload.success === 1 && payload.errors.length === 0) {
                         successCount++;
                         updateProgressBar(progresses[i].fill, 100);
                         showMessage(`Загружено ${successCount} из ${selectedFiles.length}`, 'success');
                     } else {
                         errorCount++;
                         updateProgressBar(progresses[i].fill, 100, '#ef4444');
-                        showMessage(`Ошибка при загрузке ${file.name}`, 'error');
+                        const detail = payload.errors?.join(', ') || payload.detail || 'неизвестная ошибка';
+                        showMessage(`Ошибка при загрузке ${file.name}: ${detail}`, 'error');
                     }
                 } catch (error) {
                     errorCount++;

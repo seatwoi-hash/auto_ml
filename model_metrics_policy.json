@@ -1,0 +1,10 @@
+{
+  "classes": ["animals", "city", "documents", "nature", "people"],
+  "min_accuracy": 0.8,
+  "min_macro_f1": 0.75,
+  "min_recall_per_class": 0.6,
+  "min_samples_per_class": 30,
+  "max_failed_images": 0,
+  "require_reviewed_labels": true,
+  "require_independent_test": true
+}

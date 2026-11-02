@@ -13,6 +13,7 @@ class SingleUploadResponse(BaseModel):
 
 
 class UploadedFile(BaseModel):
+    feedback_id: str | None = None
     original_name: str
     stored_name: str
     class_name: str

@@ -1,17 +1,19 @@
 import asyncio
+import hashlib
 import io
 import logging
-import secrets
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, File, Header, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse
 from PIL import Image, UnidentifiedImageError
+from pydantic import BaseModel
 
+from feedback import FeedbackStore
 from nextcloud_service import NextcloudService
 from schemas import (
     BatchUploadResponse,
@@ -33,6 +35,9 @@ settings = load_settings()
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     application.state.classifier = PhotoClassifier(model_path=str(settings.model_path))
+    application.state.model_sha256 = hashlib.sha256(
+        settings.model_path.read_bytes()
+    ).hexdigest()
     application.state.nextcloud = NextcloudService(
         url=str(settings.nextcloud_url),
         username=settings.nextcloud_user,
@@ -60,11 +65,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-def require_api_key(x_api_key: str | None = Header(default=None)) -> None:
-    if x_api_key is None or not secrets.compare_digest(x_api_key, settings.api_key):
-        raise HTTPException(status_code=401, detail="Неверный API key")
 
 
 def get_classifier() -> PhotoClassifier:
@@ -124,7 +124,6 @@ def resolve_upload_path(filename: str) -> Path:
 
 @app.post(
     "/upload/single/",
-    dependencies=[Depends(require_api_key)],
     response_model=SingleUploadResponse,
 )
 async def upload_single_file(file: UploadFile = File(...)):
@@ -151,7 +150,7 @@ async def upload_single_file(file: UploadFile = File(...)):
     }
 
 
-@app.get("/uploads/{filename}", dependencies=[Depends(require_api_key)])
+@app.get("/uploads/{filename}")
 async def get_uploaded_file(filename: str):
     """Просмотр загруженного файла"""
     file_path = resolve_upload_path(filename)
@@ -162,7 +161,6 @@ async def get_uploaded_file(filename: str):
 
 @app.get(
     "/files/",
-    dependencies=[Depends(require_api_key)],
     response_model=FileListResponse,
 )
 async def list_uploaded_files():
@@ -183,7 +181,6 @@ async def list_uploaded_files():
 
 @app.delete(
     "/files/{filename}",
-    dependencies=[Depends(require_api_key)],
     response_model=MessageResponse,
 )
 async def delete_file(filename: str):
@@ -198,7 +195,6 @@ async def delete_file(filename: str):
 
 @app.delete(
     "/files/",
-    dependencies=[Depends(require_api_key)],
     response_model=MessageResponse,
 )
 async def delete_all_files():
@@ -213,10 +209,13 @@ async def delete_all_files():
 
 @app.post(
     "/upload/",
-    dependencies=[Depends(require_api_key)],
     response_model=BatchUploadResponse,
 )
-async def upload_multiple_files(files: list[UploadFile] = File(...)):
+async def upload_multiple_files(
+    files: list[UploadFile] = File(...),
+    collect_feedback: bool = Form(False),
+):
+    collect_feedback = collect_feedback is True
     if len(files) > MAX_FILES_PER_REQUEST:
         raise HTTPException(
             status_code=400,
@@ -263,10 +262,25 @@ async def upload_multiple_files(files: list[UploadFile] = File(...)):
 
             logger.info(f"Uploaded: {result}")
 
+            feedback_id = None
+            if collect_feedback:
+                try:
+                    store = FeedbackStore(settings.feedback_dir)
+                    feedback_id = await asyncio.to_thread(
+                        store.record,
+                        file_bytes,
+                        class_name,
+                        confidence,
+                        getattr(app.state, "model_sha256", None),
+                    )
+                except Exception:
+                    logger.exception("Не удалось сохранить пример для обратной связи")
+
             uploaded_files.append(
                 {
                     "original_name": filename,
                     "stored_name": unique_filename,
+                    "feedback_id": feedback_id,
                     "class_name": class_name,
                     "confidence": confidence,
                     "success": True,
@@ -294,3 +308,19 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="localhost", port=8877, reload=True)
+
+
+class FeedbackRequest(BaseModel):
+    class_name: str
+
+
+@app.post("/feedback/{sample_id}", response_model=MessageResponse)
+async def submit_feedback(sample_id: uuid.UUID, feedback: FeedbackRequest):
+    try:
+        store = FeedbackStore(settings.feedback_dir)
+        await asyncio.to_thread(store.confirm, str(sample_id), feedback.class_name)
+    except ValueError as error:
+        raise HTTPException(400, str(error)) from error
+    except KeyError as error:
+        raise HTTPException(404, "Пример не найден") from error
+    return {"message": "Метка сохранена для подготовки обучающих данных"}

@@ -1,0 +1,65 @@
+{
+  "policy": {
+    "classes": [
+      "animals",
+      "city",
+      "documents",
+      "nature",
+      "people"
+    ],
+    "min_accuracy": 0.8,
+    "min_macro_f1": 0.75,
+    "min_recall_per_class": 0.6,
+    "min_samples_per_class": 30,
+    "max_failed_images": 0,
+    "require_reviewed_labels": true,
+    "require_independent_test": true
+  },
+  "passed": false,
+  "failures": [
+    "accuracy 0.3772 < 0.8",
+    "macro_f1 0.3014 < 0.75",
+    "animals: recall 0.5700 < 0.6",
+    "city: recall 0.0000 < 0.6",
+    "documents: recall 0.3393 < 0.6",
+    "nature: recall 0.0000 < 0.6",
+    "Test labels are not reviewed",
+    "Test independence is not verified"
+  ],
+  "accuracy": 0.37719298245614036,
+  "macro_f1": 0.3014417344173441,
+  "per_class": {
+    "animals": {
+      "precision": 0.5428571428571428,
+      "recall": 0.57,
+      "f1": 0.5560975609756097,
+      "support": 100
+    },
+    "city": {
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0,
+      "support": 100
+    },
+    "documents": {
+      "precision": 1.0,
+      "recall": 0.3392857142857143,
+      "f1": 0.5066666666666666,
+      "support": 56
+    },
+    "nature": {
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0,
+      "support": 100
+    },
+    "people": {
+      "precision": 0.2891566265060241,
+      "recall": 0.96,
+      "f1": 0.44444444444444436,
+      "support": 100
+    }
+  },
+  "model_sha256": "aa3c2df52bce6fdbd8b789c3323e61268fedc25d0cc7e94a5a84a146cd1cfa7c",
+  "dataset_sha256": "c9c1300765e7d0eaee7199c2c6f6470607f994a04cb45e9cada07def28f4618d"
+}

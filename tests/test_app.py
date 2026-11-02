@@ -74,7 +74,6 @@ def app_module(monkeypatch, tmp_path):
     monkeypatch.setenv("NEXTCLOUD_URL", "http://nextcloud:80")
     monkeypatch.setenv("NEXTCLOUD_USER", "test-user")
     monkeypatch.setenv("NEXTCLOUD_PASSWORD", "test-password")
-    monkeypatch.setenv("API_KEY", "test-api-key-123456")
     monkeypatch.setenv("MODEL_PATH", "model_checkpoint.pth")
     sys.modules.pop("app", None)
 
@@ -107,13 +106,59 @@ def test_service_initializes_dependencies_from_environment(app_module):
     )
 
 
-def test_api_key_authentication(app_module):
-    app_module.require_api_key("test-api-key-123456")
+@pytest.mark.asyncio
+async def test_file_routes_work_without_credentials(app_module):
+    async def request(method, path, body=b"", headers=()):
+        messages = []
 
-    with pytest.raises(HTTPException) as error:
-        app_module.require_api_key("wrong-api-key-123456")
+        async def receive():
+            return {"type": "http.request", "body": body, "more_body": False}
 
-    assert error.value.status_code == 401
+        async def send(message):
+            messages.append(message)
+
+        await app_module.app(
+            {
+                "type": "http",
+                "asgi": {"version": "3.0", "spec_version": "2.4"},
+                "http_version": "1.1",
+                "method": method,
+                "scheme": "http",
+                "path": path,
+                "raw_path": path.encode(),
+                "query_string": b"",
+                "root_path": "",
+                "headers": list(headers),
+                "server": ("testserver", 80),
+                "client": ("127.0.0.1", 12345),
+            },
+            receive,
+            send,
+        )
+        assert messages[0]["status"] == 200
+        return b"".join(m.get("body", b"") for m in messages[1:])
+
+    def multipart(field):
+        return (
+            b"--test-boundary\r\n"
+            + f'Content-Disposition: form-data; name="{field}"; '
+            'filename="photo.png"\r\n'.encode()
+            + b"Content-Type: image/png\r\n\r\n"
+            + make_png()
+            + b"\r\n--test-boundary--\r\n"
+        )
+
+    headers = [(b"content-type", b"multipart/form-data; boundary=test-boundary")]
+    await request("POST", "/upload/single/", multipart("file"), headers)
+    stored = next(app_module.UPLOAD_DIR.iterdir())
+    assert await request("GET", f"/uploads/{stored.name}") == make_png()
+    await request("GET", "/files/")
+    await request("DELETE", f"/files/{stored.name}")
+    await request("POST", "/upload/", multipart("files"), headers)
+    assert FakeNextcloudService.instances[0].uploads
+    await request("POST", "/upload/single/", multipart("file"), headers)
+    await request("DELETE", "/files/")
+    assert not list(app_module.UPLOAD_DIR.iterdir())
 
 
 @pytest.mark.asyncio
@@ -273,3 +318,38 @@ async def test_delete_all_files(app_module):
 
     assert response["message"] == "Удалено 2 файлов"
     assert list(app_module.UPLOAD_DIR.iterdir()) == []
+
+
+async def test_feedback_opt_in_and_correction(app_module, tmp_path):
+    from feedback import FeedbackStore
+    from schemas import BatchUploadResponse
+
+    app_module.settings.feedback_dir = tmp_path / "feedback"
+    upload = UploadFile(
+        filename="photo.png",
+        file=io.BytesIO(make_png()),
+        headers=Headers({"content-type": "image/png"}),
+    )
+    result = await app_module.upload_multiple_files([upload], collect_feedback=True)
+    sample = BatchUploadResponse(**result).files[0]
+    assert sample.feedback_id
+    await app_module.submit_feedback(
+        __import__("uuid").UUID(sample.feedback_id),
+        app_module.FeedbackRequest(class_name="people"),
+    )
+    store = FeedbackStore(app_module.settings.feedback_dir)
+    with store.connect() as db:
+        row = db.execute("SELECT predicted, label FROM samples").fetchone()
+    assert row == ("nature", "people")
+
+
+async def test_upload_without_consent_does_not_collect(app_module, tmp_path):
+    app_module.settings.feedback_dir = tmp_path / "feedback"
+    upload = UploadFile(
+        filename="photo.png",
+        file=io.BytesIO(make_png()),
+        headers=Headers({"content-type": "image/png"}),
+    )
+    result = await app_module.upload_multiple_files([upload], collect_feedback=False)
+    assert result["files"][0]["feedback_id"] is None
+    assert not app_module.settings.feedback_dir.exists()

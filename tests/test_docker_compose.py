@@ -28,7 +28,6 @@ def test_app_uses_environment_names_expected_by_python_code():
     assert environment["NEXTCLOUD_URL"] == "http://nextcloud:80"
     assert "NEXTCLOUD_USER" in environment
     assert "NEXTCLOUD_PASSWORD" in environment
-    assert "API_KEY" in environment
     assert "NEXTCLOUD_USERNAME" not in environment
 
 

@@ -1,0 +1,9 @@
+{
+  "classes": ["animals", "city", "documents", "nature", "people"],
+  "macro_f1_drop": 0.03,
+  "class_recall_drop": 0.1,
+  "min_samples_per_class": 30,
+  "cooldown_hours": 24,
+  "candidate_min_macro_f1_gain": 0.01,
+  "candidate_max_recall_drop": 0.0
+}

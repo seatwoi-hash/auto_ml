@@ -1,0 +1,3325 @@
+{
+  "evaluation_type": "diagnostic_on_labeled_directory",
+  "independent_test": false,
+  "limitation": "Search-derived directory labels are unreviewed; legacy training overlap and near duplicates are unverified. Metrics measure folder-label agreement, not verified real-world accuracy.",
+  "seed": 42,
+  "requested_per_class": 100,
+  "model_sha256": "aa3c2df52bce6fdbd8b789c3323e61268fedc25d0cc7e94a5a84a146cd1cfa7c",
+  "torch_version": "2.12.0",
+  "device": "cpu",
+  "threads": 4,
+  "class_order": [
+    "animals",
+    "city",
+    "documents",
+    "nature",
+    "people"
+  ],
+  "inventory": {
+    "animals": 100,
+    "city": 100,
+    "documents": 56,
+    "nature": 100,
+    "people": 100
+  },
+  "evaluated": 456,
+  "failed": 0,
+  "exact_duplicate_excess_in_sample": 0,
+  "metrics": {
+    "animals": {
+      "precision": 0.5428571428571428,
+      "recall": 0.57,
+      "f1-score": 0.5560975609756098,
+      "support": 100.0
+    },
+    "city": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 100.0
+    },
+    "documents": {
+      "precision": 1.0,
+      "recall": 0.3392857142857143,
+      "f1-score": 0.5066666666666667,
+      "support": 56.0
+    },
+    "nature": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 100.0
+    },
+    "people": {
+      "precision": 0.2891566265060241,
+      "recall": 0.96,
+      "f1-score": 0.4444444444444444,
+      "support": 100.0
+    },
+    "accuracy": 0.37719298245614036,
+    "macro avg": {
+      "precision": 0.3664027538726334,
+      "recall": 0.37385714285714283,
+      "f1-score": 0.30144173441734423,
+      "support": 456.0
+    },
+    "weighted avg": {
+      "precision": 0.30526617749192253,
+      "recall": 0.37719298245614036,
+      "f1-score": 0.28163932867398855,
+      "support": 456.0
+    }
+  },
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      57,
+      0,
+      0,
+      0,
+      43
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      98
+    ],
+    [
+      24,
+      0,
+      19,
+      0,
+      13
+    ],
+    [
+      18,
+      0,
+      0,
+      0,
+      82
+    ],
+    [
+      4,
+      0,
+      0,
+      0,
+      96
+    ]
+  ],
+  "errors": [],
+  "predictions": [
+    {
+      "path": "my_dataset/test_candidates/animals/77235554.jpg",
+      "sha256": "011eb69f2fe481625698c4a898a564b435c5e5df08ed304e314289a087673ce9",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9603288769721985
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444927.jpg",
+      "sha256": "9fd85ddcfbaca679292f98c60750b799638cc0321b40b45600ed0c4a886c9edc",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9941657781600952
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/101863641.jpg",
+      "sha256": "6293a26c86057752726639419f851af03ad0b3fbbb397fac08956e284a0e8146",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9985154271125793
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/91854268.jpg",
+      "sha256": "cf0d891606703c232b1ef5799ccf9733e9e04194355de581c026f02d0a879fae",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999821186065674
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/127882262.jpg",
+      "sha256": "bd73217c1083abbfdf16f20c977b80132947050ab62f2c79eabc483d2b1fbb7b",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999396800994873
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/12127693.jpg",
+      "sha256": "9b46595fdf92b4a91d380e6b94721da5a68ec18ace40f4829a29db357d79bda5",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9992972612380981
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/121242412.jpg",
+      "sha256": "16cca2b7b32cf1320ed3a53eeab78b7a1467d05789c73a523864723bc7e36073",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9896475672721863
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444984.jpg",
+      "sha256": "26f5d944df81dedcf25488bf376431918702796fc1e59352a1a157a04acc6882",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9997034668922424
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444894.jpg",
+      "sha256": "146f9f16c2b017277e2846e35f4d29c204dc9991b998a81e17b852667a6a24f2",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9992893934249878
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/81754720.jpg",
+      "sha256": "c8fb7f42224ae49263ac20bacf66150125701917621d602e314d494c39fe58b1",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998840093612671
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/60502882.jpg",
+      "sha256": "885d6d82362e0a2f51a4c72a650880b2c549fce03dfd701b0fbe726279bb363e",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9976925849914551
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444208.jpg",
+      "sha256": "3bf1cc0b45dcfd628050d4d41028279b3de8ca8f8a8105d234942d71c19932aa",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9527449011802673
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/73471816.jpg",
+      "sha256": "4c469c91b9aa874347304e88d9280fcd5ad412041d5d9fe0aa46be78323d7508",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9996166229248047
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/26592914.jpg",
+      "sha256": "08831828fcdd75505271b6d7459440254ece7cf1ee5ad4f4318c3d2e454a9411",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.6710208654403687
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/106062156.jpg",
+      "sha256": "496a795dd1398e2fc628ae012047a026ecb3283ae8cd1c0ea1d2156913d6ca5d",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999969005584717
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/93236321.png",
+      "sha256": "463ca0ddd85828c3c9c9e3ef0e2b77b66cb98bfc572952928ddcb16485346397",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.936728298664093
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/83413768.jpg",
+      "sha256": "08641bbc053e6d4db00b364655a687e1b690bf0dc17a0fb7920261b28a365186",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9997896552085876
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/120578019.jpg",
+      "sha256": "08eca1435eef0a959e39413e59f280ad19bbe67d7509d14d4f50dc76ef52e580",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.6513059139251709
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/121270246.jpg",
+      "sha256": "44f19cfb4fee944db1e9dde859f9d40d26202cffc2acdab0019d6ac9d51224e9",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9634203314781189
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/53213339.jpg",
+      "sha256": "b035beae8aedda1254657c9a4b2b35e76319a15b9cb76de59bfe748532bf863a",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.7973438501358032
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/74484704.jpg",
+      "sha256": "bce7cc18bca22d31c0cf79afce8ab82058c10ac54cd302acd3fe01750a52b431",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9990839958190918
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/79537322.jpg",
+      "sha256": "2af9c190ff998466e36b8334c8388d078e3875fc26fcc41e22848d6d22c86d96",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.8412896990776062
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/67817174.jpg",
+      "sha256": "559d4f1873bbcdcb81e850a0fc1e107870936d507c30c8f8b4d9048cbd5a7eb6",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9784297943115234
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/120011113.jpg",
+      "sha256": "d271344e83da4010df314cc668dc51ae56f3a99cc53ae50fd26e0fcf897015f8",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.8968060612678528
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/83997417.jpg",
+      "sha256": "37c184c3c5837bea2180e517d1a137e17b35547a4240df1c24f25659fe4613e8",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9989299178123474
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/2542206.jpg",
+      "sha256": "4233c053bdd2cbdbf605e31a085483d2386f12bc6da392a13ac0a42566cb05d6",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9990358352661133
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/9118863.jpg",
+      "sha256": "78a72c638aede4e808e2c347659c15cbc195de6b038b502cbb6c02625f119357",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9991932511329651
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/3551174.jpg",
+      "sha256": "5bb7db6bd4e269382350d504e3817b3868c2bb7e131b3e32e46629be9ce8cf86",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.8756839036941528
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/91854281.jpg",
+      "sha256": "c14ac48fb231a7c79e10dd3549ede1bcc6b7f00d3dc752c1cc741445f46ef1b4",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9996696710586548
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/100150891.jpg",
+      "sha256": "92b05ecc54237ea82ff3f3b2edfa1fb63441276051f4010ae80e92340e447c88",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9823088049888611
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107445036.jpg",
+      "sha256": "c5623de121d80734451ce21fce85b897a64ef45a5403010b90b6dadc4931a422",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.6959653496742249
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/85682178.jpg",
+      "sha256": "646f6d321e6a9fc0534d0f46a7a0ea2400d93a84ffe490fc7a66839dbbb75d89",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.8357021808624268
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/163439778.jpg",
+      "sha256": "1dfff9ecca4dbc133afef2d1bdccf81dc032439c8da385f8ab69c1f4f376adaa",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.99943608045578
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/74929921.jpg",
+      "sha256": "0db270818a53b363872f21d481312cee816f092872616e4de4d6e3244774fef9",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9823222756385803
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107445012.jpg",
+      "sha256": "883b869f82752503aca0dc01dfdb1e36566620566a50f7ced47e5e0e1fcb6bbe",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.997712254524231
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/77235556.jpg",
+      "sha256": "aa146a5a651e1f1fada2e49d921a0520d2b69475d3dde1eed16e3b8596009b8d",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999927282333374
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/54083123.jpg",
+      "sha256": "20bb029815fec247b2a0e5d0f4c10ced978e880151f1593798aa74e4481c28a9",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998763799667358
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107443984.jpg",
+      "sha256": "451e84a37794a5415bdaa439a7c809e6a0457d5c767926e04259e0a8277e04bc",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9994863271713257
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107443947.jpg",
+      "sha256": "f2ef31c7ba5f0fb3692cc5b6aaf1dd57ebe2462dee81a5c1624dbe4402c3aff6",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.5408851504325867
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/116011310.jpg",
+      "sha256": "0db6bacb155e8fa1ec8ea6d2f9a25a5acfe88f35176559fd807aa41e504796d8",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998475313186646
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/51548543.jpg",
+      "sha256": "2f6335e5da367e05cc5a7ac0a330c273f5b0efb30d228ba88524c7bffe32a67b",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9994282126426697
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/110998103.jpg",
+      "sha256": "c20d9348f5c21d5942f690f93df81509327cf1db8f741ac13373819ceb506fce",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.999984860420227
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/60495811.jpg",
+      "sha256": "7d432cf948a90ea1afd8fa126a1bf61c2c2729acd80fb2bd27445e1d0bbcdd46",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9999090433120728
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/3578991.jpg",
+      "sha256": "618974154d671ff369a8a20219afca53197ce0d9f44467f7cb9348ed70d11c56",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.6195754408836365
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/143571500.jpg",
+      "sha256": "47c3c9667dee4bbe9d3e14d03e5d3af75560fd3a5002aeff7758d9c44922c79c",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.991504967212677
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444967.jpg",
+      "sha256": "7c8a56fcf9126c813c7c77b403306bbad1081f5eeb30e65022d1e0c81795230b",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.982257068157196
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/21376945.jpg",
+      "sha256": "0496b1dc07e7ce99565864e4aed507c1a8196d135455023b88aaeba0b6bb74c3",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9993929862976074
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/101274476.jpg",
+      "sha256": "abd3738fa1b156396479c7c2beb3d3d6d1683d4b44c2a3d1366fc2e2fee82ea9",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9999874830245972
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/17044149.jpg",
+      "sha256": "35c542a353bbb93ad3eff201461b0b9d65559b77dc2249afb2be32b2d93e2a06",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9999988079071045
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/9809267.jpg",
+      "sha256": "f0eecda2f2a4344c23a7610d15429e7217c0f72886fc413915aa857d65be1628",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.999984622001648
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/124859918.jpg",
+      "sha256": "f5cef8586d368864151aea2c618ab3aabe8446fc5ff5fcce94899e30c91b4f81",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.5405563116073608
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444047.jpg",
+      "sha256": "2877ef7273070a20af14ddf78deab604dbfe062540094d0a9b24b28c18f172ae",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9990748167037964
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/51157382.jpg",
+      "sha256": "c0bb951d671678342322ff70b98321a3c509e6ea64fc79507f4983e27d59c547",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.999872088432312
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/51548503.jpg",
+      "sha256": "0777377f5360076655467e44a5f3cf2575faeef28ac03b87022305db9f6f74d2",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9994634985923767
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/53213343.jpg",
+      "sha256": "ea56d03abe0e92ec86335f2b5191698734d4cd330dcc868ec94129d1b963650c",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.5943264365196228
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107445001.jpg",
+      "sha256": "2f9a39109f0ba706185a1373e022db37bc7b1a3926cf5f2ba3fd58fa6b0b527d",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9465494751930237
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/149045710.jpg",
+      "sha256": "96114c83fe421ff7f205b74dc641c3c36327a2c00d06d4232ecbda56575f4949",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9434336423873901
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/145688974.jpg",
+      "sha256": "f7e3436fd0dd68e82dffc1fbda886207b2f448585fee67c9ce9f507553e1f6cf",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.997632622718811
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/11390310.jpg",
+      "sha256": "4e7cc25f71e1549a7c0a6a1f3c4d301d8e867ef5d4c53dc56d0e27fea8e35265",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9979307651519775
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/142132355.jpg",
+      "sha256": "6f174734a166b1c862d94fcc955efa6fa1cc5b68d0fa8ef6b8a7fc375f22655f",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9862074851989746
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444237.jpg",
+      "sha256": "bbf388c36cf4803fb91dfda1f96ddec5c6e2c6afe44740c5005cb0afaebc981f",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9988783001899719
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/80211058.jpg",
+      "sha256": "f4d4d4f213abf231419376441cd15729a1196256160a96706587b90cf93b7b09",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9943029880523682
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/217417.jpg",
+      "sha256": "dd1ece33a5168a7dd41b77599eff953a9ebe13ba4dc74e5c8f7bf7927fec83d0",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999675750732422
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/9437797.jpg",
+      "sha256": "a34ee05fe8cb1badd2d7ffbeec2257c79f3683bd3ea0aef2b4ec709e42878734",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999891519546509
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/163690993.jpg",
+      "sha256": "7e4eb81ffd4f1f139268a41ffbade8682b843b4bd78da40c9ee49659d17e3eef",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999700784683228
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/68960758.jpg",
+      "sha256": "97c55377437bd41b798853dc0530186bedbe0917b21583192684eecbd1dab226",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998937845230103
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/51548574.jpg",
+      "sha256": "98189c07bbf15d384ac160db9901f527d67c6ee1fddd825a2bf2adf7f8083d30",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9995922446250916
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/38050091.jpg",
+      "sha256": "424ddd844e54eb2b2edcd3c5286d1e7c81c3f34a48eec6bf85ac802655d66722",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9978420734405518
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/180938904.jpg",
+      "sha256": "300e6f7d59fd0b5a626938c35a0017230dce8a7145147fb60ebb3773ebefe9a7",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998986721038818
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444072.jpg",
+      "sha256": "06f24caf31f5c49aea4f66a990eb2cee96c94ffc4c6936b4d05c875bd8bc092a",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.7691267728805542
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/122402683.jpg",
+      "sha256": "5034b209b3b2ddd2a9f6c02b3afbb821188f9e05db77776dbcf24a023ce3a6db",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998886585235596
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/81801644.png",
+      "sha256": "92790ab48dc8a94815f689a2eb05fbcb3aede90a92e1c582dcde32f40e62d197",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9519799947738647
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/120444128.jpg",
+      "sha256": "569cd3c217005135413b725311e314da059d1264fa4f49be5a3841a66ded1095",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.7266671657562256
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/77548177.jpg",
+      "sha256": "1f90c34b475161f3630b1814ac67d22bc6ebd190601309b4bdfc7b8e7eb999e7",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9836421012878418
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/195235878.jpg",
+      "sha256": "425f527a72cd117789f063f97528949fc00b469b17a86033cccb44f6b5a43466",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9999682903289795
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/76536231.jpg",
+      "sha256": "c89667ecb3badc00e3e97bd0ab7f35cc592a2664fba289c374f3b7f2b1ca786e",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9858160018920898
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/9253640.jpg",
+      "sha256": "e1720d6218a928f127520565c664fe8304ae622718d9c2530d1ea6d1a722b0aa",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9686873555183411
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/121293459.jpg",
+      "sha256": "ec56af1f7da81b154c1df70f87378c1fe3ad984b5d60172f5a87e1793f11d3fd",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9996837377548218
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/11010144.jpg",
+      "sha256": "8510a7c59cd00c4d52e6d68e975c51ef4da3a2e00b2e9a6cd4e1290178dc9521",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998929500579834
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/121270396.jpg",
+      "sha256": "b24d4d319a1f9d423126840be55358e5dac1f7030084afc9eeef5cbbea32bb27",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9775035381317139
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/142133890.jpg",
+      "sha256": "f07aab6a53135db56e18849df7feed085a21cab11375e4084ccabcc8abba3800",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.8780087232589722
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/73556788.jpg",
+      "sha256": "3649e933ba7881239fa74385420761cd70376ff3273868bff2224f3f4c07b4fe",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9983056783676147
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/88218646.jpg",
+      "sha256": "bf7cc891445b392dfe37d78bc33d16d5d4eaf32f11a9054a02366e3019b3984d",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999591112136841
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/185147161.jpg",
+      "sha256": "c0ac0d25a9527a078489ea6eaf998e192ab2a01eb0a19a65f91805ed3066752c",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998728036880493
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/167467409.jpg",
+      "sha256": "1c572e3b32337bbc1e8e2e826ac940fe7e3dbd2e729a8e51caffa6dd60895590",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9954625964164734
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/68277457.jpg",
+      "sha256": "c398c7d1282ddbadaeeeda6766f691db07a6b41eb0cf6e37c96791f237307c30",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9998527765274048
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/3408222.jpg",
+      "sha256": "b90681004646c0df5e46e8d909d220f36768080d2374fe8826b93a4f9fafc0eb",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.7316673994064331
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/2918168.jpg",
+      "sha256": "2667be51309566eb00351353c9623bcb48f20f7c99d95c6049e7ccda734ee512",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999790191650391
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444179.jpg",
+      "sha256": "2ede4e0a8c6f08ce5860ff581a4aeedd2705715641e37eeb87a461e74219c74f",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9640721678733826
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/68608952.jpg",
+      "sha256": "cf439a8a90cd05d5922818c34129116fa64eb676c0a0a702295e85d5879e55c2",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999943971633911
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/74867032.jpg",
+      "sha256": "60ae177f9378b915adfc5a1f8a52df6649a02b25655caf708d246ce0ed04a4ed",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9997995495796204
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444949.jpg",
+      "sha256": "a609ebbf22f5446dfb52beebd385622cecfee3d564b06019a8daec477cb1a1a2",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9990044236183167
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/67190266.jpg",
+      "sha256": "c370ca9fe9aed416834b17c2233ede4d927b9cb72cff0d651ba4d0ab3b9fa93c",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9999943971633911
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/100150893.jpg",
+      "sha256": "882c465a65109fd73f4f0a330b86d340d55cfa494ccfc48a0d981ab556af0cfa",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999853372573853
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/196188511.jpg",
+      "sha256": "bf3dbce10165b66fa0dbe9e9865c83969746fa6d317b2c636c1554613127c5b7",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9999334812164307
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/53213342.jpg",
+      "sha256": "d9a724a12f17118e4594445fab68430b4f0d7f6d0748606b0d650b33c170d191",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9971079230308533
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/107444161.jpg",
+      "sha256": "89a624935c4192aef44e7aeed1815b6b9f179d2357d0f0a2d2134726c16609c2",
+      "expected": "animals",
+      "predicted": "people",
+      "confidence": 0.9922329187393188
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/85683888.jpg",
+      "sha256": "7fd40f9897af2d77aac857f948a4b317aa24af47ad269226e385d0ac305c1a63",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9995905756950378
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/155827955.jpg",
+      "sha256": "37913b9d57eec80cefcad74fad7b3a3b65c8bbd8146d8099c715b0129dbe455f",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9996997117996216
+    },
+    {
+      "path": "my_dataset/test_candidates/animals/161284987.jpg",
+      "sha256": "7c5da54c7fb42820d7860465580857da8f060d752e2d5863babaa62a57a10402",
+      "expected": "animals",
+      "predicted": "animals",
+      "confidence": 0.9995253086090088
+    },
+    {
+      "path": "my_dataset/test_candidates/city/5116062.jpg",
+      "sha256": "0b0149bab5fefa2c35f594c8f6f2bfa65791a2fee54a431cd5d7153350a1d702",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9996774196624756
+    },
+    {
+      "path": "my_dataset/test_candidates/city/89618729.jpg",
+      "sha256": "abaae69f49023fb0875f90b3803e056a36d5287285afdf5bdd5e8d216debd173",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9798632264137268
+    },
+    {
+      "path": "my_dataset/test_candidates/city/150067650.jpg",
+      "sha256": "57bbde0ca3d2eef18eabce24da84fb17f7cd6991da0f8c5ec0ac15881867bc06",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9858616590499878
+    },
+    {
+      "path": "my_dataset/test_candidates/city/140605629.jpg",
+      "sha256": "70dedf9b528e2b9f5900ffd37585fdbc99004151fde6c88a69b40a115c213e25",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9891313314437866
+    },
+    {
+      "path": "my_dataset/test_candidates/city/73268054.jpg",
+      "sha256": "b6093d11709a56953ed19c9a1b3223a57b095bd8a2e849f1be7fea55080a0853",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999499320983887
+    },
+    {
+      "path": "my_dataset/test_candidates/city/37052962.jpg",
+      "sha256": "35ec7f02f7ec184a4249e171ab439c3ee3c30596680de786ba88f8f9203de4a4",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9756234884262085
+    },
+    {
+      "path": "my_dataset/test_candidates/city/171207887.jpg",
+      "sha256": "8ecd2b5e0134ccbdac40a971ed2bd04e423d71dc8d65a245627c23f446cb4bf4",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9994656443595886
+    },
+    {
+      "path": "my_dataset/test_candidates/city/69735323.jpg",
+      "sha256": "e209abf80980fa14234ac4523921fe7b33f85a767eb2102ff26a580e42cd5e7a",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9944717884063721
+    },
+    {
+      "path": "my_dataset/test_candidates/city/196324284.jpg",
+      "sha256": "818ac6a2da56ad9dbdffd3e0b2925fcad34a9ca4d3e2a69ef5bfb0e67a240c7b",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9933987855911255
+    },
+    {
+      "path": "my_dataset/test_candidates/city/128639471.jpg",
+      "sha256": "f8bf36878b5763758e8b1c57af5d22fe7869ea94a8adfbd9aadef81195585e87",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999939203262329
+    },
+    {
+      "path": "my_dataset/test_candidates/city/145359246.jpg",
+      "sha256": "57cb9fa9ab2ec9cf6385ba93e3680cb6cf1a9b0f770a923a706777199af517d3",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9994290471076965
+    },
+    {
+      "path": "my_dataset/test_candidates/city/127131973.jpg",
+      "sha256": "a2d97287ef2cb8042d98f0d962145d8d364903eeec449f586029aff5c7870132",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9995511174201965
+    },
+    {
+      "path": "my_dataset/test_candidates/city/143198012.jpg",
+      "sha256": "a49d02c0a95ace49f6a09556fc8a9195cb8e6522805c41954e71673e7787a81e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999520778656006
+    },
+    {
+      "path": "my_dataset/test_candidates/city/4978324.jpg",
+      "sha256": "a1c1c4ea1e81f1511adc23a25ba6815b8246145df4cc98bb2cacb2846b726fa7",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999120235443115
+    },
+    {
+      "path": "my_dataset/test_candidates/city/41601738.jpg",
+      "sha256": "33e5275b56341999b10338a559e86a4d92157a50ce8b3462cb88f693690cce66",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9987691044807434
+    },
+    {
+      "path": "my_dataset/test_candidates/city/89105460.jpg",
+      "sha256": "58242a2fa3072891a08db2ccd031ebd1a9aa7ef4c41aa3a97c9c85e005411ebc",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9848206639289856
+    },
+    {
+      "path": "my_dataset/test_candidates/city/61974471.jpg",
+      "sha256": "b9bbf87870169208d54cbcb24ad1dd077edfa27f055bcff9a95368b599f9e7a0",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.7773533463478088
+    },
+    {
+      "path": "my_dataset/test_candidates/city/193073636.jpg",
+      "sha256": "1b87c75b04db4326dc128d152b2b365f30d119726e71ee91bf54ff5c20c38c84",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9989915490150452
+    },
+    {
+      "path": "my_dataset/test_candidates/city/95467195.jpg",
+      "sha256": "f64c261b124f816f51a0bcb0aec30538d7a862239b5f5863ad480e986bd382be",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9974567294120789
+    },
+    {
+      "path": "my_dataset/test_candidates/city/173532246.jpg",
+      "sha256": "3dc9f083f8f1476c48c4de9730e6407b1a6d368beef4c0ad8db8e75474ddb73e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.999139666557312
+    },
+    {
+      "path": "my_dataset/test_candidates/city/162997104.jpg",
+      "sha256": "de2b62ef02a0b2d1ce83951d76c032f64183f1d1fa4048ca63d2673abd3997cb",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999188184738159
+    },
+    {
+      "path": "my_dataset/test_candidates/city/140605630.jpg",
+      "sha256": "d158389a5dd06daeb644c6f43e6f43311e203e9b769aef111fac9e373d8fe6db",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.6110514998435974
+    },
+    {
+      "path": "my_dataset/test_candidates/city/88927005.jpg",
+      "sha256": "82ecb47203f470f7514a13a0e584a7f3743a48224cfc6ac110890a245fb9a263",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9699041843414307
+    },
+    {
+      "path": "my_dataset/test_candidates/city/40279968.jpg",
+      "sha256": "d1f5934a90727a5517c271fe83087b2bdeb2eb965281e49ffa816d22f6c79e3d",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9957467913627625
+    },
+    {
+      "path": "my_dataset/test_candidates/city/95206524.jpg",
+      "sha256": "2d51f4249a4f3880d4dbc3a6437663fd956313ca54c0f30cf1fbff7f9edf0e43",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9939591884613037
+    },
+    {
+      "path": "my_dataset/test_candidates/city/120676562.jpg",
+      "sha256": "c7c9bee74fb98112b09f21ead5b651b1ddf4488c95ca318390a8e8670443f1fb",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999258518218994
+    },
+    {
+      "path": "my_dataset/test_candidates/city/115628750.jpg",
+      "sha256": "2b3bcc18b06c1aaa8685559ed400f894588d4c82ec097cc48bb6919ab04ce00d",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9953224062919617
+    },
+    {
+      "path": "my_dataset/test_candidates/city/123526617.jpg",
+      "sha256": "f7b0f07f28127345c5ee853bc779ccc5ea0d10508b62f916db24f5a88ec8c2b7",
+      "expected": "city",
+      "predicted": "animals",
+      "confidence": 0.9486503005027771
+    },
+    {
+      "path": "my_dataset/test_candidates/city/130485373.jpg",
+      "sha256": "78c93ffc49ebc2fb4f89cae262e286f7f03a882593aa7cf53279d41ce5172e00",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9952667951583862
+    },
+    {
+      "path": "my_dataset/test_candidates/city/130486112.jpg",
+      "sha256": "e52dea6b26446cb083d3cb8cc436073f2746283395a2c2e64c2c32240148a56f",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9990444779396057
+    },
+    {
+      "path": "my_dataset/test_candidates/city/93733005.jpg",
+      "sha256": "43fa9a9af70dac3144df2b156f47681ddd5f3666194076967294aa9ff566d960",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9557876586914062
+    },
+    {
+      "path": "my_dataset/test_candidates/city/117488222.jpg",
+      "sha256": "30ff5a38c4519d99954e3a99d81472454df9cc1801724c1e80d28931404fab15",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.990929901599884
+    },
+    {
+      "path": "my_dataset/test_candidates/city/170523928.jpg",
+      "sha256": "874aa4a19d560691f1a113dd8e2ce24176be9dce0e906946879f6b8aaee67034",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.939555287361145
+    },
+    {
+      "path": "my_dataset/test_candidates/city/168794474.jpg",
+      "sha256": "41b90e9f3f19d4c415d40e93d04c530f538ee1111e56f0b137d8dd9a8747b00d",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9215760231018066
+    },
+    {
+      "path": "my_dataset/test_candidates/city/2747533.jpg",
+      "sha256": "c531d8188ef6ecc556db6bbb0915a9e6c2999e76b8903c833a6c1b0d49573fa9",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9996447563171387
+    },
+    {
+      "path": "my_dataset/test_candidates/city/14321584.jpg",
+      "sha256": "4f9a1c5e895ac027f4418f99dbdd1c38bcbc450519ab20acac2f6ef7917d1b83",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9979567527770996
+    },
+    {
+      "path": "my_dataset/test_candidates/city/104949536.jpg",
+      "sha256": "03b5c973a36bd143a2a8c26687e314d6cc473b3ae3f45cb5402334a601976bb8",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9939858913421631
+    },
+    {
+      "path": "my_dataset/test_candidates/city/154660148.jpg",
+      "sha256": "51731347e9441e3c9cc4c0289155bb6d47fdfd217316c1d6fdc3b6d5e73bb01d",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9971229434013367
+    },
+    {
+      "path": "my_dataset/test_candidates/city/66099105.jpg",
+      "sha256": "febb005ae7e8a1978778eb7ba836a439ef873fb30345096a21aa4f697a0384af",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999992847442627
+    },
+    {
+      "path": "my_dataset/test_candidates/city/115630941.jpg",
+      "sha256": "f29698b2e1277c3da7f6b3c4a1a504a8820c86dad4c2a2c29e45db0c848d2a2f",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9307037591934204
+    },
+    {
+      "path": "my_dataset/test_candidates/city/36413466.jpg",
+      "sha256": "d9a4c0e676fe0cb1d46eec89220962f9a07fb66d8eec4eaabb6cf4cfea3da5e6",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.5883608460426331
+    },
+    {
+      "path": "my_dataset/test_candidates/city/193073640.jpg",
+      "sha256": "8ec138568e9653c5e1a992aaf0de419fff9f4115df4f0dcb48c5ed2c9f2ff5c8",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999089241027832
+    },
+    {
+      "path": "my_dataset/test_candidates/city/145359247.jpg",
+      "sha256": "9e36852aa4878ced6433bcad5bec09d9fb325a2b2c3730f999354a9b97ad2037",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.999724805355072
+    },
+    {
+      "path": "my_dataset/test_candidates/city/40281447.jpg",
+      "sha256": "5e33b1ab6fc8c64ca9a4865b01960fabb9ee9b05924761803460944e9d2cbc39",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9981337189674377
+    },
+    {
+      "path": "my_dataset/test_candidates/city/63730507.jpg",
+      "sha256": "a7b6ceb6586dbaa368905686a8aec5b860d85039eca29ffe6ef326afa8a04d2e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9719864130020142
+    },
+    {
+      "path": "my_dataset/test_candidates/city/40613194.jpg",
+      "sha256": "a79e241eaf208ad456944c5ea3f51078b17c418ea17884530513bf260c22eb35",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.6911541819572449
+    },
+    {
+      "path": "my_dataset/test_candidates/city/151853901.jpg",
+      "sha256": "97e536ad11622d8528192f66ffa22ba13cddbe3f351737c008b03b66277d348f",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.998577356338501
+    },
+    {
+      "path": "my_dataset/test_candidates/city/13098692.jpg",
+      "sha256": "3428f794d87c6216c6b6a321f10f4a0344c3e2b3e0d852df35e31e8bbef1f6cf",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9979782700538635
+    },
+    {
+      "path": "my_dataset/test_candidates/city/32883370.jpg",
+      "sha256": "3dce0f5d15d3075a6b6079fc40d7089b273bf4da5587b9435046a7afa9082b85",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9987603425979614
+    },
+    {
+      "path": "my_dataset/test_candidates/city/89271099.jpg",
+      "sha256": "f6262427223adf2665d21063280b61b5cdab70276e77e9a1b6d99f0024ad62f5",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9988085031509399
+    },
+    {
+      "path": "my_dataset/test_candidates/city/95660829.jpg",
+      "sha256": "3ca6113ac717e589d8f29d0e43bff35ebb163e92fc9a8c2c830525e2165dd4fd",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9970694184303284
+    },
+    {
+      "path": "my_dataset/test_candidates/city/120676551.jpg",
+      "sha256": "277b1f0a529d0bf5e9246a1359a1cd8186e46afdb57f56f7a1b7cc3fe78688f0",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.999883770942688
+    },
+    {
+      "path": "my_dataset/test_candidates/city/141388209.jpg",
+      "sha256": "ad224d9b28b9422e19d963715147b1b90f2b7251d8a2f40a031b5eaac15cc64f",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9996331930160522
+    },
+    {
+      "path": "my_dataset/test_candidates/city/104649810.jpg",
+      "sha256": "034830f19bf12be0277b5f9cb6b1b5f9b8cc0101c74a9db7d35ad2e54b2dc501",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.997533917427063
+    },
+    {
+      "path": "my_dataset/test_candidates/city/125416700.jpg",
+      "sha256": "9fde602799264138d5279cd0ffb4396b4d3cafe8bc3fca3356c5236e1f591a4c",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9998934268951416
+    },
+    {
+      "path": "my_dataset/test_candidates/city/37070845.jpg",
+      "sha256": "f5b5f0c6e451aa2a048da5d8124cd4249f608616287d7edf722d6eff0f7de9d4",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.994714081287384
+    },
+    {
+      "path": "my_dataset/test_candidates/city/68831309.jpg",
+      "sha256": "fae3c9e15ae103ef14a0f945ab95ae93054ffecdc409e7d8829050ead440e63c",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9823466539382935
+    },
+    {
+      "path": "my_dataset/test_candidates/city/155519606.jpg",
+      "sha256": "85f5d070e2c84b2a1b5a298527c52d741a36239860c2747f18dc96bb05a74579",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9943990111351013
+    },
+    {
+      "path": "my_dataset/test_candidates/city/54880134.jpg",
+      "sha256": "5082ae18d2eef150f9f69a78697f18f6cfeacd855b39834b1e4dde35973f8b72",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9898031949996948
+    },
+    {
+      "path": "my_dataset/test_candidates/city/96024767.jpg",
+      "sha256": "2478490f38108b509d458d0f8cef2bb1670c9274d3a9fddb1298d075d51c84bb",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9462036490440369
+    },
+    {
+      "path": "my_dataset/test_candidates/city/87207705.jpg",
+      "sha256": "013395374274f9115cf99bf41402721ebe8c667ac8deef30555c3e46fbdc3acb",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9997809529304504
+    },
+    {
+      "path": "my_dataset/test_candidates/city/152864445.jpg",
+      "sha256": "c4755bd4df92e0b9ff2aa5e64a4453f1fd650c558c745475a4a4030e0ef6779d",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9930248260498047
+    },
+    {
+      "path": "my_dataset/test_candidates/city/121826454.jpg",
+      "sha256": "c66ecab668e845360b68cd7345d02c3be7ebe4022f326c96258cd0a9540f6f08",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9952855706214905
+    },
+    {
+      "path": "my_dataset/test_candidates/city/120348694.jpg",
+      "sha256": "740ce6325d48bb6996d15e36057e3ceddad063401841cf747db9ecfbc96d3a2c",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9263812303543091
+    },
+    {
+      "path": "my_dataset/test_candidates/city/134699719.jpg",
+      "sha256": "5c7c3374e439ed24477718bb31a79dbf1b25f37666253044f26dd0407245ef63",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.999915361404419
+    },
+    {
+      "path": "my_dataset/test_candidates/city/96024769.jpg",
+      "sha256": "8f94c9f628a6107adc42b0aec71aa1a331763d989c2c1da4834be29f94edea7b",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9939018487930298
+    },
+    {
+      "path": "my_dataset/test_candidates/city/75454160.jpg",
+      "sha256": "266ca0747d11242ce8ba3c5c69c1f464e5f8cd10bf87bd8088c397d0c41181c5",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9996174573898315
+    },
+    {
+      "path": "my_dataset/test_candidates/city/36409963.jpg",
+      "sha256": "4c3dcb0545f34c2ab19f970a17bbbfb460e4e1f487ce3134fb187fa318477001",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9724823832511902
+    },
+    {
+      "path": "my_dataset/test_candidates/city/48935922.jpg",
+      "sha256": "1f83cacda33dedee5b7b718073585cdbcf0e7eee14a588edfe96b254413d2835",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9998331069946289
+    },
+    {
+      "path": "my_dataset/test_candidates/city/124659389.jpg",
+      "sha256": "6dc197b587e2baa90b01f4f5ef21b7e718bffcc2a5c2086367f875b33f2d6683",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9913492202758789
+    },
+    {
+      "path": "my_dataset/test_candidates/city/149320121.jpg",
+      "sha256": "7d6f8bb83e9002eabfc1574070ba652892ddbb8880d72e9fb562e062d8f4036e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9997408986091614
+    },
+    {
+      "path": "my_dataset/test_candidates/city/109133021.jpg",
+      "sha256": "6352db2754622955c31f95d6a6cce94dee91c489e459e239627e213ea65dc820",
+      "expected": "city",
+      "predicted": "animals",
+      "confidence": 0.9771566987037659
+    },
+    {
+      "path": "my_dataset/test_candidates/city/63255436.jpg",
+      "sha256": "e6c18395fc6b6ca6e6b2dd473b8672d484afbce68d05ee3e317147f5da6914ef",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9996180534362793
+    },
+    {
+      "path": "my_dataset/test_candidates/city/140586889.jpg",
+      "sha256": "876b6df6ba3c467735dd2f8a3391e2e16905cf28c94b9021fcd50cbfad034e51",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9884961843490601
+    },
+    {
+      "path": "my_dataset/test_candidates/city/139780452.jpg",
+      "sha256": "767f95f0efe67fb91c4538f40a5a019a59a7ccc1fee142e4d9758c6bd2320706",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999336004257202
+    },
+    {
+      "path": "my_dataset/test_candidates/city/146415387.jpg",
+      "sha256": "9b53f90678ebfa627df6e01b0af5befffae64adf4a9c87ade4c91a51634c4daa",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9968011379241943
+    },
+    {
+      "path": "my_dataset/test_candidates/city/68066624.jpg",
+      "sha256": "fdd994facae2b55a55dcc8b5a691f8da74be99e32bd8eb46e4c54b39999f8f58",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999982118606567
+    },
+    {
+      "path": "my_dataset/test_candidates/city/62721776.jpg",
+      "sha256": "9be92a085f19bb86c2fd6ee41c2787f1470b17841a915f52d5266fc7917c5241",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.8138682842254639
+    },
+    {
+      "path": "my_dataset/test_candidates/city/145577397.jpg",
+      "sha256": "10024385dbe6855cb25b93bb03e9e730d0ca07d5679b66bbf82cf92c97d32899",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999860525131226
+    },
+    {
+      "path": "my_dataset/test_candidates/city/95126535.jpg",
+      "sha256": "e517076e573af4d1e5266363543cfc25fd9ca7be1717570484fcf0019857e4de",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9956545829772949
+    },
+    {
+      "path": "my_dataset/test_candidates/city/106916779.jpg",
+      "sha256": "d13ba05b914a0dcaa0728d1f3abc919a2740ed467a87ddeec8927bd946f4fe3e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.8805707693099976
+    },
+    {
+      "path": "my_dataset/test_candidates/city/150027945.jpg",
+      "sha256": "a86062d2b90925c0031227fa7373e1a3183ecd3cce7e0bd6f64b35bd49b7e1eb",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9987906813621521
+    },
+    {
+      "path": "my_dataset/test_candidates/city/14287876.jpg",
+      "sha256": "e99c31b735be1d791b7facdef31af925022d9dccf314e3a1ee538998050cf072",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.719371497631073
+    },
+    {
+      "path": "my_dataset/test_candidates/city/88532623.jpg",
+      "sha256": "f19bd79c332904541bba80e4d55821645390b6c0cfa230c5f84de05a9823c2c9",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9970816969871521
+    },
+    {
+      "path": "my_dataset/test_candidates/city/113759357.jpg",
+      "sha256": "034925b0f49547f05f2385bcd75e76a1a6fe8607e11d9780f67786d6f5efede6",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.986412525177002
+    },
+    {
+      "path": "my_dataset/test_candidates/city/160973141.jpg",
+      "sha256": "337a669a320c09327a2c95206d1b1fd38e273ed3b360db1b75aff85087749546",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9979686141014099
+    },
+    {
+      "path": "my_dataset/test_candidates/city/193075156.jpg",
+      "sha256": "43f185b6f2ea4270750301cf727e13929874433544ed085361489aed388f995e",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9993541836738586
+    },
+    {
+      "path": "my_dataset/test_candidates/city/175365.jpg",
+      "sha256": "566507d54e23e64031e8357db1633ca3424803016294e37a13318ac43c284f81",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9790787696838379
+    },
+    {
+      "path": "my_dataset/test_candidates/city/8071675.jpg",
+      "sha256": "de544f41c8f01f40ac80f38b4d5458bb749976f9228de7829c606dcafff03ed7",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999029636383057
+    },
+    {
+      "path": "my_dataset/test_candidates/city/96024770.jpg",
+      "sha256": "53502a66679427507cf0c5d1b5864f3ac278f041f98102a64da0ca8626a61584",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.7337151765823364
+    },
+    {
+      "path": "my_dataset/test_candidates/city/193073638.jpg",
+      "sha256": "52fcc33a52dd4df43a88e897692aff903c1656a00ba01d24f4e85a306ef74648",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.999800980091095
+    },
+    {
+      "path": "my_dataset/test_candidates/city/48935921.jpg",
+      "sha256": "df08fdb12b8f11a7fe987528196f74897a6bdff58e50a9533a97c38ec9f116a5",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9998459815979004
+    },
+    {
+      "path": "my_dataset/test_candidates/city/179978261.jpg",
+      "sha256": "83c3542f82058f0d502242aa759b0d481a3e47e01180bd59d123396a69cd50bd",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9989431500434875
+    },
+    {
+      "path": "my_dataset/test_candidates/city/131828268.jpg",
+      "sha256": "0da7f691e39529a710eea6dfcaa178803482da65fd2fbf71512c19875ec6b334",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.995600700378418
+    },
+    {
+      "path": "my_dataset/test_candidates/city/136128032.jpg",
+      "sha256": "2c8d86089f3ae504d860f740b18c219917c1cc8c92afe87e6ff3090aa84718c0",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9999988079071045
+    },
+    {
+      "path": "my_dataset/test_candidates/city/146823608.jpg",
+      "sha256": "bf41224b252eeda08cc9c0a0ae08f69fa98def01493e5047cf701fd40a9c035b",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9987807869911194
+    },
+    {
+      "path": "my_dataset/test_candidates/city/123000622.jpg",
+      "sha256": "133d88e71f250a92135c7b467277b9284ae987a0889310326ce99721edd36909",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.6683182120323181
+    },
+    {
+      "path": "my_dataset/test_candidates/city/115595190.jpg",
+      "sha256": "f1b3333125362135973b869cf3bbbfbc6cd513d058f6d4d9356e3a7700e566c7",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.5833154320716858
+    },
+    {
+      "path": "my_dataset/test_candidates/city/64814337.jpg",
+      "sha256": "fa58866b5cc1d0de37d9460b581a81259a576c86c9f2b5d5210ee345ac830258",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9998854398727417
+    },
+    {
+      "path": "my_dataset/test_candidates/city/168225793.jpg",
+      "sha256": "d3b57008df3732bf2fe0ffcbeeb54f3d2b1f6c453a9109955678c4fd8872d155",
+      "expected": "city",
+      "predicted": "people",
+      "confidence": 0.9978686571121216
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/177737726.png",
+      "sha256": "205b76605e561efaaab100f261dd6c7c215cf122c149863f7e1f018c3dd13baa",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9037640690803528
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127537721.jpg",
+      "sha256": "8d00865109a061235be80c19f22181814b262533a9c47a7ea12e178b2a00ff65",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9964828491210938
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113073455.jpg",
+      "sha256": "d72a6dfa54f7446d72828cc161979f4a8af9434cb8e30c323dd532a75201b97b",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9974392652511597
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/116746858.png",
+      "sha256": "9babef10dd3ada72070b3f2632eedb957c6b786861740fad4079f407de681045",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.8948403000831604
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113705507.jpg",
+      "sha256": "39fa3d8ddd62af299d466212f8bbf5ebe4c3b3de0ad30680ff6774d707c10999",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9877192974090576
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113066313.jpg",
+      "sha256": "899f216a0138730b668fea1d1c81faa6c07bb3e0acc7d85021a48ab648fea7e4",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.6503713726997375
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/126640241.png",
+      "sha256": "2632bc2234b78e6a4bf848dbdb10edbab872831ecc5c66fd672a30dc568dc1e8",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9797066450119019
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113066294.jpg",
+      "sha256": "1a868a850b3e3b611c8fb13fcef08884fb3553c8ef1b7ce01254d3d374cf2250",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9780206084251404
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/188554698.jpg",
+      "sha256": "2ad8791c7af6806172bf3a477260981ce49c5891ece34813ffaae15280af1aa9",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.6536181569099426
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/177737728.png",
+      "sha256": "ee29c0056da46800a376233d02db0435fdb2b8cb2c9dcc49b497befce996bcf0",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.707293689250946
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/98063934.png",
+      "sha256": "3ebcf6fba00aaf9820b98b2e07a973698e069358cf920750f32a0cf9f59fee00",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.5993328094482422
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/86218039.jpg",
+      "sha256": "53be9c11ae63e5a41e9f5a0bb5b3751d2dd17411faddecc5d2af328186063b1e",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9933947920799255
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/46308412.jpg",
+      "sha256": "e37df46f384e497019789f918121b31c7f7f8306d0315f1e4fab8877675347bc",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.9462735652923584
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113066290.jpg",
+      "sha256": "cd45f183762b83471938aeb5441bee5883819e31789522d450fb218f7ba1897e",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9904420971870422
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/95740805.png",
+      "sha256": "541900c4d3609fdccfbaf7d3bba75eb609c2333ea24100849a68d4c9d0025269",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9925597906112671
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/3306235.jpg",
+      "sha256": "fa12b9bdaba186539f72ca735a1dd7c637c58f58aca8f41d693f8cb0783e84e1",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.905852198600769
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113066309.jpg",
+      "sha256": "9987a8b8bf76745e0bcd0d2ab296615ae1f8c3834e8f2a2acfa4fd3985e59a17",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9418985843658447
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/37134938.png",
+      "sha256": "6c1eb9b63355f4849e076217754925ba9fcc717eca5b1a796f87dc14e7c1b62c",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9981843829154968
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/331211.jpg",
+      "sha256": "43107f901331ad95307e18040fcca46a57f27b5090ff591b47b8514184af05a4",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.7133360505104065
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113066304.jpg",
+      "sha256": "ddba98258449c3539dae38e6ddd0d331e9ecb0212ea42ad52ed7c51cd297612c",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9192603230476379
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/95512958.jpg",
+      "sha256": "80e93980546c38c57c90a3748e0973dc44d441ba861a2e7c0ec9f7497bf31c74",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9889494180679321
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/40435201.jpg",
+      "sha256": "0973ed8c45916ffe05ec75c37e19bba0bbb5d148392a037fd37721aeba060761",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9423250555992126
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/154486843.jpg",
+      "sha256": "c2fc4340b0653bd58ae2cdc7cb7e9fc199a2e4b3774747e3d579d728380d2bd7",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9884145259857178
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/98063935.png",
+      "sha256": "213ab3cb08a7bb2313c10a804adebc49d35e93ff5cc2ab74fbc556b1cd65250c",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9455759525299072
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/116746860.png",
+      "sha256": "f3e2e19795763a490c3dd88419b71fe6fedb25d4d6dcc06edcbdcc2d2d75520f",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.5239748358726501
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/50029224.jpg",
+      "sha256": "ea7da5376499fec7fd8c6cc9d2b826603f91896d5fa20372e02b422c7a44ec81",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9997954964637756
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/99547970.jpg",
+      "sha256": "de9b350dfe718dfa9a31e0a332ec5da1692e581f107217eb6413be63dcdbb3ad",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.9658575654029846
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113073443.jpg",
+      "sha256": "ec25c9816df4669002ee5975d5494ec91b908a3fb2b43a8b70f949804accd6c2",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.537497878074646
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/147602324.jpg",
+      "sha256": "418351c228ea3e11c5acd6b6fcd35207d5510fd6f72190c4cd7ecd825efce550",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.9182212948799133
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/177737727.png",
+      "sha256": "9b1e8313c2eabf78549111a848591e4d32a20fb8c9d970e3ced9b1d2a511386c",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9608631134033203
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127389268.jpg",
+      "sha256": "c56928d3c547bebab12ae926828513269e18d708ca313c9804cdcc4a61c14a08",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9237802028656006
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/116746862.png",
+      "sha256": "a526115e70ff3b3ec1b0ab2bfdb46599103b7a2887e24b2ee2b76d7c761d2987",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.5753374099731445
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127389269.jpg",
+      "sha256": "55bca91f729920f373599a2e2ebeeda6c9a8cd6300ef6839a576b874b4f13ac5",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9430985450744629
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127796023.jpg",
+      "sha256": "b8fdbfa9c9b54a79377e75681c8653c232de68156a8a833a2fd2cb3cf4616737",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9957488179206848
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/98063937.png",
+      "sha256": "3de2e7db3ada748f5b07ba171f0a8b800be4009e16f2cb04778d9fdc31321952",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.8071370124816895
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/126951849.webp",
+      "sha256": "435d98b05413e5992c1f567c15bbc46ddec9b38e884470f71a98e311e73c2a80",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.7620623707771301
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113605317.jpg",
+      "sha256": "ffc8ff90fe41c5320576f55298550dfa4562930b54e7ea875f9aa19554231e5f",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9987882971763611
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/98063940.png",
+      "sha256": "f4dd71d4de813fdb1d61ef5d99cbd9eeb4d98927946f9dda787a8ba116be5de8",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9351813793182373
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/25750549.png",
+      "sha256": "fdcc88047be1afcb3b3a0794119c6672b75833ca616f5069a3a0e99f30b3e1e7",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9674683213233948
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127477392.jpg",
+      "sha256": "c249f484d18d27694719d3d3d18e1c203ec40e9ba1d857d74aedb1dcc44fee89",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.9836730360984802
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/126635308.jpg",
+      "sha256": "75cde190f9b0143b5b2658342216d414d9233cecfa9716c9d3188fdd3093517f",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.39698299765586853
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113073432.jpg",
+      "sha256": "c45e6fe0db22626dece0d41952f15ebc98b83efe59734842ec98c5cd1b80a897",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.7233429551124573
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127389270.jpg",
+      "sha256": "fb2451e4e43db03838e10c6cba900a810ca897e09505fd4c3c25cddc5efce610",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.7847758531570435
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/126640230.jpg",
+      "sha256": "cdbf7e8537a9daed2e22ecc6c9646b9bde52edd2cc44aaf030736613350bb734",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.6047759652137756
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/128606464.jpg",
+      "sha256": "043f64ed55783d730b1e5939085ee6ed8d851d9538f815cf4cf7416070147305",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.8670727610588074
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/33197403.jpg",
+      "sha256": "15d4209a43d0933466ca21c9ea3b58f1fc91aa1ed6ecc730ba1311a9b133f0c4",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.9999924898147583
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/94958736.jpg",
+      "sha256": "a49666a9653e4bb6e708e4907c520fa1e5794234cfde617b867ceae34e0f4c4b",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9865032434463501
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113510809.jpg",
+      "sha256": "4b58bc1fadddf74aee88ba2be38e389fb6fdf6e84542320e491ef286d8c0f5a0",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9737135171890259
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113605301.jpg",
+      "sha256": "76ad9e5bb4332538dcd97ece04817f86b99baf57268590ae9f3914a6b014bab6",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.7582438588142395
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/188783887.jpg",
+      "sha256": "96a40115032349b6afd26b8bc1fa4b14e5584e2d48254a75a57a153da5f9cef9",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.8977718949317932
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/188541631.jpg",
+      "sha256": "4b6e88370fd2c88d2e0aeeab15fd35317d6c19ae36914f6aed8421175a4cfdea",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9520696997642517
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113425960.jpg",
+      "sha256": "ad4e5fff2e717e500f47579267c0e119698bd79a03c9fa94efc768e8cde1c465",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9917817711830139
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113479698.jpg",
+      "sha256": "544680c04805ce38a8103f431e868d027b7b460bbdd4a9f3c87084d2190d320b",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9632536172866821
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/127401153.jpg",
+      "sha256": "578aa668f70bfca7743ae2bd731d3429d35f4fd7f6630dd4acbe507be5d2798b",
+      "expected": "documents",
+      "predicted": "people",
+      "confidence": 0.7163238525390625
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/113569866.jpg",
+      "sha256": "5b59cf0482e161457de4ebac3f8cda9d699d3c54cc7dd606b2a0d123886b2de8",
+      "expected": "documents",
+      "predicted": "animals",
+      "confidence": 0.9957808256149292
+    },
+    {
+      "path": "my_dataset/test_candidates/documents/116746859.png",
+      "sha256": "b87de7407e3960f361d0a5c3aac126582b281143dc411b41a5abb943ea9e1480",
+      "expected": "documents",
+      "predicted": "documents",
+      "confidence": 0.9002358913421631
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/14618428.jpg",
+      "sha256": "14fd5746e0573dc09226da604624838a44707044c308ec8c5119a48815f5a24d",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.9936029314994812
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/40438062.jpg",
+      "sha256": "7ed386252dd74ab9ce5cfda5f541f1ea865e18869de1060cfb8fe54b509121a1",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.7137027382850647
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/153591541.jpg",
+      "sha256": "cde7181b6f3c607b76752f10c1a807462c2119655042a9f602d16df21eb10aca",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7788875699043274
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/163210767.jpg",
+      "sha256": "863f0b57170a0de2239dbe5fbebe675c4bf1edd280f431f660c798dd1bc93a4d",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.6624122858047485
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/46079860.jpg",
+      "sha256": "d2d4fbd77b179b3f325c183d6d48daaa0cc796a0289c04c7fc03030b7a8e4adb",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9978166818618774
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/157227942.jpg",
+      "sha256": "4714b73ed753a92c17a838bc3189341fc0f87f0a2ff8df84bd71015bc847203d",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.7675268650054932
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/13412581.jpg",
+      "sha256": "92e827f508bab966403692b9d0fe32487e4d9cde3ac64b11be3b47f008a3c6b9",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.5293945670127869
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/42751692.jpg",
+      "sha256": "85669dd882d1008f7acdaeaf6c6823bbd224b33d68db95f86a1c79b9c2289670",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.5981026291847229
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/69208195.jpg",
+      "sha256": "a0de32908425923cea013c1445c847443bd680dc914f31f77b241cfa67fd24be",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999958276748657
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/138263094.jpg",
+      "sha256": "3c538d999d2096f09a6844ea5ef2e0952a7e6b7d4bbe602519df2a4ca817dfd2",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.9943284392356873
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/1226206.jpg",
+      "sha256": "c89cb61f4db6b534dc2405858f6b475d464581e4767ee43e11a228447ae630aa",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.7454788684844971
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/80438340.jpg",
+      "sha256": "115135885261e9e0bb91c689ad6f842774634e56adc77bdb25df24e24939ab89",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9849943518638611
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/67345204.jpg",
+      "sha256": "0f9d7592c94b7474f7af721d849b1733d52f081e153f151052f03c7541e784dd",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.989001989364624
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/107604865.jpg",
+      "sha256": "e7bb9457cd0394b9d7d6e493df3551bfaedeb4c46aa642b7c0d416028a1aed02",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998877048492432
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/138051690.jpg",
+      "sha256": "17388a2e4a82ccadc6495333821ddd3928db78388f0fb2c974d961772a70050e",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9975753426551819
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/155094123.jpg",
+      "sha256": "f71ea65f6a4220c90418bca2af5dc5c32e05a01f96f718b2bf7bfd36ce9f026c",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999998807907104
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/152286723.jpg",
+      "sha256": "7635487502c487d92f2f76af22d423ce46078940a36268b9522e9f611350e057",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998799562454224
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/36612630.jpg",
+      "sha256": "e97dee0db46c5c06210052e49a69379dff4df4efd6976fc94a9d17b66746ab1b",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.998913049697876
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/55987330.jpg",
+      "sha256": "6d9ef24930f24d849b31ee1f0929444c508dd8980ecb938e96b1757cd468d426",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9956753849983215
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/55751224.jpg",
+      "sha256": "363837981329616268613390d05a5ec7b0860a5837155dac58e3e3c428338fe5",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9947369694709778
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/15464581.jpg",
+      "sha256": "dbd31978d972b58365fa0aee7d3f31c4237295ecf372983490d41c2f6b3c53bb",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9898508787155151
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/34260681.jpg",
+      "sha256": "d91c3e1f1c3213958d35f3bf9fce49cee1af9cd9d7e9fbdc82a3ec1fb0b3cf73",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9994365572929382
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/124695308.jpg",
+      "sha256": "02669f25d405bc1a8313967f8b047577420b0f6958218c1d03703eb30548eabb",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998383522033691
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/86257138.jpg",
+      "sha256": "0c2b86f28320aec444b07908eb8ae51fba5723eafd5ac45567845dbfef5babcf",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9991347193717957
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/23678297.jpg",
+      "sha256": "d3f4f69d200f49ba318a879746dea148c785d060ee25bbdebdf4542e69659ba0",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9990170001983643
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/107133106.jpg",
+      "sha256": "a8c4c85ed6c9dc88c82179983ea40d66e57169c10af1b08a0afa89c89d6fdc54",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9914032816886902
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/28205724.jpg",
+      "sha256": "09c721ab8796bfa100081877d99cfd278366c4d0205926e162acafacb82a4680",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9855778813362122
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/158986126.jpg",
+      "sha256": "22c18df6145827943cfcb081b60bacc12aabc50647e2e94810904addd1a63215",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9992979764938354
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/45956021.jpg",
+      "sha256": "022c84a6b7e00e4205d7146b84a52af631def8be72cf038e1acac05d9d14bc1c",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9993478655815125
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/164414293.jpg",
+      "sha256": "debdcf817ba1738dd6e5335705693084cc7e7768a2ab88f2e4753c6c96a7527e",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999634027481079
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/93609441.jpg",
+      "sha256": "2b8e8eaff6a219ce1ea44605c783c3c667faa3239c4788b923755da3d6b8b8db",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7846786379814148
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/79576933.jpg",
+      "sha256": "f741a97505bfd8d3d3e2c33c829f18a6c3ffa375134704ee9c937fd868a47c68",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9983514547348022
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/149668304.jpg",
+      "sha256": "95052c6dabc1f803072544c9042240cacb17c4d29457f819fa9e311ad9ffc71a",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9466773271560669
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/153771049.jpg",
+      "sha256": "d88f80be0d895505bb68ce2ae1417d41c7edab2786f7c8eee30f7d3e199030c8",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.9988654851913452
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/175937776.jpg",
+      "sha256": "cbc442ce51139ad62d5951ed20c1024341a083cf90ef4aae4448297d383169aa",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9856069087982178
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/78702631.jpg",
+      "sha256": "33486212a5703781cbe4bd4d1dc22f9b659474d6a44eb741898e50c80fa37951",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9891506433486938
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/76867192.jpg",
+      "sha256": "d569106d6c673f49450ae3d9ca344d2d4391456bcc2bd6233b294a29ef45f10d",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9938181042671204
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/64777520.jpg",
+      "sha256": "50616b209cb4633ef5bb2a0837ec6a307faae30940122bc62eff0b809d6068c9",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999940395355225
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/22217482.jpg",
+      "sha256": "f0a427026ac45c7adde4acff01ecb542e801cad0c5a95f381cd22abc8cfc80aa",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.8379207253456116
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/163107705.jpg",
+      "sha256": "c30f7364a5a32ce559eeb99b183d3cbe539cf0d73082ec4bc6ae64be74869c97",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999876022338867
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/115963781.jpg",
+      "sha256": "660411b8d45848e4948272840fd3d07908ff1ad51b1e126cd2002b1670b81070",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.6476190686225891
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/79000710.png",
+      "sha256": "325dde3742e8939566bf514b87cb3057006dc774f7af4c7f43e48aadb13cc325",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9992375373840332
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/149668305.jpg",
+      "sha256": "13107a13c7a16c913bd3ec4331206bd9863f1302a9381258eef83cb2d3aed038",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9573180675506592
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/919257.jpg",
+      "sha256": "049bdd7bbc12e5e868b46f6a3b2012d555bf6ff6d02fd449a2bea0d32732e07c",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.9791404008865356
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/915077.jpg",
+      "sha256": "b206fd50a4dd4cc4de0cfa7e7922c8f6091d16a6a2bc9363b07bc6a78cbcec34",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999922513961792
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/66333658.jpg",
+      "sha256": "f994f64934b39ed33240189458a72ed9bfa4f710a46b6190c5ae131b15951f03",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999867677688599
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/81619825.jpg",
+      "sha256": "80a3b84b4f65e393ebf560e21b748614f195a534d2b41505dc0ee8cf35d5581a",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9794554710388184
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/158431413.jpg",
+      "sha256": "130cbd00531e9b93efcf6b2a58116637161c20a1072d1d6dcb548fcb8149d48f",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9968769550323486
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/70640045.jpg",
+      "sha256": "34d8708efc3a627165a2fc9d997243ea08f254b1a07538eb6eed22f999979752",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998555183410645
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/134682226.jpg",
+      "sha256": "261cb029bf50728d5bbddf94e84744610e9035365cc30f287befda21d5d9bee3",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999431371688843
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/42637498.jpg",
+      "sha256": "339bed5a93a63c9d9c2e5728483e8543c09c869bfc1d83227bda62b742bc183f",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9997555613517761
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/79775553.jpg",
+      "sha256": "61b3c65bda5ad85ab9081052596094269da9a049d8ac2594de1b2282f197ff50",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9757432341575623
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/119451104.jpg",
+      "sha256": "bd3dce34b85aa16854e20f89eaa193bd3da6d514a216e2725b73c3b073114355",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9997982382774353
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/83047724.jpg",
+      "sha256": "69eab12f6fc4940a9599879bb4bbc1ab04d7827a6715e67167f8a830ea87917d",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9988755583763123
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/117755323.jpg",
+      "sha256": "b8ce50f06a0d2cdbd2d62a44b7f6f42e2d502726e449ac140a9d67b4d388ea09",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7071999311447144
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/176025534.jpg",
+      "sha256": "54b948e4d6b066e307e99db915f5fcddf7138d52518f70320850810fde0315c3",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9993925094604492
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/202005535.jpg",
+      "sha256": "fd1b9da33307f5a16c42962fe3137fdd70cf0c9c203675840598099f8fc0f06b",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9888263940811157
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/145015263.jpg",
+      "sha256": "3bab1255b3edefdff4498634e27de817fd0a416d5f028a6a178b7908f2316fdf",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999785423278809
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/15417834.jpg",
+      "sha256": "4fb08fe806d6d55aae98f2dae9ba07564edd423577ebcce393f3144697d6b416",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7511800527572632
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/56567601.jpg",
+      "sha256": "199e002874b3bbeaa8c31e15b11034988524638a2ad24bd7b9253cc47f6a7934",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9983129501342773
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/88888687.jpg",
+      "sha256": "c709ac4b644679a7d702de8868dfdb2b9f34479328065012c083d034d8b92cfb",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.6046401858329773
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/190830022.jpg",
+      "sha256": "dd83bee4331134fd498bba1f9b6d18230eb0e1c9588cb6867a0672747e3370ab",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998619556427002
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/85063306.jpg",
+      "sha256": "fca10da9ab3ec52619e67f2052a779848175f3405c458d5517f80b929f998426",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7416682839393616
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/113522448.jpg",
+      "sha256": "415e06fcab99f91b7b527072b74167490a751f12b591bd287f4cd1062a37b311",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9986910223960876
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/70253897.jpg",
+      "sha256": "9ba23b3c64e1ed00e28b0e24479aa56d96eee24e930d106693f288e42913428c",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9989782571792603
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/154368654.jpg",
+      "sha256": "afb0673b6f3287a1ddc34da062f0b8f7f2eaaf60ad7c1b55adee2199b34c2bc6",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.992265522480011
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/78701870.jpg",
+      "sha256": "8ea9e0d7599af239c9bbea258673d96d49ffb930d0f683f1b86562a3b9810bdc",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9994522929191589
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/43639031.jpg",
+      "sha256": "f7ce8419a0d094f58bc9e5ef50ea2cb3343a11213abe95163ce06ea5bab13669",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9857309460639954
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/146119198.jpg",
+      "sha256": "f879cf76e8d1e142f9979cdcf2a0a04415522c6c3b52b5138f69f7d403080974",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9994951486587524
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/86761380.jpg",
+      "sha256": "009a0c85de6ddaef70c47b877fe06b6e1acb76bcc98db855839fe34e08d6067e",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.7866793274879456
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/7295324.jpg",
+      "sha256": "c5bb9553ee78d13c53197de41d1e072b76fd82c9696d25e388a12e45117cc319",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.8189883232116699
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/153437170.jpg",
+      "sha256": "8ed024db97f54624f64976df21e45ee1fda96d3c78c46d0fbbb41f98d8024c3a",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9995256662368774
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/34259667.jpg",
+      "sha256": "63df4bbe4d3453e6e8d70d437c0eb431c5dad9703ab630299641f3c7cb0cbf0b",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.999812662601471
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/185530168.jpg",
+      "sha256": "40ee21d6897f5db41e82ecdb35df21661c886d7c7eb1a3523f704a4f0a135263",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9998950958251953
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/132449826.jpg",
+      "sha256": "1b9b99c84c317f06b7200c7b7c31bdd458b71011e9ad68ae10548478a27fb03b",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.999293327331543
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/8834590.jpg",
+      "sha256": "9e487d5bc8a42356747a9b140fbfbd111f0c50d13f649b136f8610e7c5f4d88c",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.790318489074707
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/191126057.jpg",
+      "sha256": "9446f14e891fbc9cc0c82f7e682ed8f35c8be2a98817300a9108c95241f55c5d",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.5063691139221191
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/155059716.jpg",
+      "sha256": "c921dbc232a3161eec13ccb1d4fe99a572d8609acb96c78f84af50cac96dcd61",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.999293327331543
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/72749364.jpg",
+      "sha256": "b6e91479282368543f29b4a76a64eaec529acf0c4623dab347ebcda13afafc0b",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9975506663322449
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/91768505.jpg",
+      "sha256": "39d63fd5d15d303701367e00b31ec7d7eb4ac54b28ee82036fdc09b8c86e36af",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.5434267520904541
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/144492223.jpg",
+      "sha256": "da657535e6245701c7d6bb372185427dc8b77109315bfe073c3845d61295d1af",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9979715943336487
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/63365594.jpg",
+      "sha256": "0dc13c233651aaba58956683f40b410b23f4bf707f14bb949d088c8cbec21266",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.999824583530426
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/185530162.jpg",
+      "sha256": "c67ba007b67496c06d0f3751c2cb8852409d4bed1afcad9ba22968f5815166f3",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.991643488407135
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/72381726.jpg",
+      "sha256": "ad6e7ff9eed1c8153e971a01a1b4c5b504a5c22a3e045e8ef224dd886e914713",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999649524688721
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/65027248.jpg",
+      "sha256": "848dd153bf1d498fc72f30cc32c82e884f30affccf85d079d6bfc9865921d421",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9996429681777954
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/154986747.jpg",
+      "sha256": "0c26026b5cb435ed5851dab35fa14eded00da3db41ee5a0974eea4f2da39c6bb",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.999994158744812
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/19166655.jpg",
+      "sha256": "9d0c7bf88cf584f911fa6890e8caee72d852e1100bdeb25ac79cf1a3195ef78a",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9478174448013306
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/84431082.jpg",
+      "sha256": "c5db9b467de685a80c5fa1a90116e36a86fce18b5376a079446fb74fc8ad891f",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9992185831069946
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/64790035.jpg",
+      "sha256": "f566305f4f3d1d5ee7ffb9c61169f5b0b13140b450ca498bf659fa9cb124f859",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9996094107627869
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/185530327.jpg",
+      "sha256": "408a1306bceeea3ff6d377eaeba493b4607c016d81622416c5b72e337fff4555",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9999992847442627
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/70840963.jpg",
+      "sha256": "bbd0f4b00f637222023bb112d57504e3b98052d180b204d7199ef4bdab4ff9e2",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9940381050109863
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/146299205.jpg",
+      "sha256": "9a14f29b628b24b9f47b267fd79aaf9223a04f39ed43ed5c0512d9b4920a4ad8",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9995279312133789
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/92939528.jpg",
+      "sha256": "14b4daa446b51e0266374ed0f8f21f2042722543aa8a0404f00c9531cbad1113",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.8181021809577942
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/21897308.jpg",
+      "sha256": "154be5e192c6e1a0ea0c2ba791134441c1faff0e8ef1ee5b734d656bf6425aed",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.6713760495185852
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/94858812.jpg",
+      "sha256": "9e92ff8a9fe5ec869f58d50799ddba1e8526cf9ab46c0308c61f1434aa921454",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9773016571998596
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/91785348.jpg",
+      "sha256": "b532c52147d92fd511850c92b0be09555e15a683bbabb3f53182e2246ed097b1",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.686273992061615
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/39733216.jpg",
+      "sha256": "9785cf791978f972cb0cdc4f77f73631bd9881b64990a553265ca728dcf34674",
+      "expected": "nature",
+      "predicted": "animals",
+      "confidence": 0.645006000995636
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/14358.jpg",
+      "sha256": "3a4ede3bfc9760ca4844070d53744e3e66494fba6b680f4e0390fa92e02a68e1",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.9928411245346069
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/92391676.jpg",
+      "sha256": "e16e3c4ae0b9f7218d6226646f63956746351a955af611757d2d5d8646b5705e",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.98014235496521
+    },
+    {
+      "path": "my_dataset/test_candidates/nature/49294662.jpg",
+      "sha256": "feafe18e8889bf05bb7b8baffac5d5991c615b3a9f9cbeebc22698a08626a410",
+      "expected": "nature",
+      "predicted": "people",
+      "confidence": 0.8502170443534851
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38882159.jpg",
+      "sha256": "3cae662475aa5c5061bd56e8fe0ad4b8bbfa0d91152be46a3d333d22416128b7",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999885559082031
+    },
+    {
+      "path": "my_dataset/test_candidates/people/5283085.jpg",
+      "sha256": "36b8b995ec6b3d90a2232c3531db9346e2ec1ae7bf80056b8065045222d9b7ea",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999954700469971
+    },
+    {
+      "path": "my_dataset/test_candidates/people/80020484.jpg",
+      "sha256": "d334019a09e156098f7933d51901bc99e51c39c41e799ac9e1577c6d29833ad7",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999344348907471
+    },
+    {
+      "path": "my_dataset/test_candidates/people/154733972.jpg",
+      "sha256": "d39a2cef40708f6ef4d85917db552feab1d0ed62a6ad552080890c3982450bff",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999939203262329
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60500659.jpg",
+      "sha256": "0fcee3ea24240d57be18bc15159131dbd6ce5372d0150c329121cea844216e26",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9536540508270264
+    },
+    {
+      "path": "my_dataset/test_candidates/people/67874740.jpg",
+      "sha256": "ff8b9a255f4984f2828618ab4e5467b537cee61d9d720dccb74f18e1a18bb1fb",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999946355819702
+    },
+    {
+      "path": "my_dataset/test_candidates/people/4939622.jpg",
+      "sha256": "689eec69ff9a2951258691468c5d0994f09e959bd776e300bb279ad8c1b66a56",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999972581863403
+    },
+    {
+      "path": "my_dataset/test_candidates/people/11008535.jpg",
+      "sha256": "ad73b3f635a4539b5c1b03a061ecffc45efa00cad50d072b8a6840310209cdf5",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999984502792358
+    },
+    {
+      "path": "my_dataset/test_candidates/people/69655658.jpg",
+      "sha256": "a86b8e9bfc203c79bdf4b0058e5cb7f2a1d9707f0846d2b94d00dcf2920b226c",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9997691512107849
+    },
+    {
+      "path": "my_dataset/test_candidates/people/53677503.jpg",
+      "sha256": "e42b80f87c2c8362b6a8186169f24d2475ca79b2bcc79f4b32bad283bb0a5a35",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999998927116394
+    },
+    {
+      "path": "my_dataset/test_candidates/people/92724648.jpg",
+      "sha256": "a701c24703c0512e40063d8c8cfb69c6db051a61f9574588cf9f835da09b99b6",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999995231628418
+    },
+    {
+      "path": "my_dataset/test_candidates/people/68482143.jpg",
+      "sha256": "f1c079792b9cb485200994f05a1086336394fe895c3b40e9f5fd49d449496f0d",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9928795695304871
+    },
+    {
+      "path": "my_dataset/test_candidates/people/119691679.jpg",
+      "sha256": "b65dbed76cf06f845151d5cf181a0068b300d865f78c7808bee34b513104239d",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999734163284302
+    },
+    {
+      "path": "my_dataset/test_candidates/people/125587076.jpg",
+      "sha256": "19ded958dc775cca0bc2f393c35ea042f0aadf4dd2431866caad387167db7c03",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999889135360718
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147560082.jpg",
+      "sha256": "6516566f2aca9d3ffc398dac5db5d56d34625a01d0376af7a0d5819fa8ed772e",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999078512191772
+    },
+    {
+      "path": "my_dataset/test_candidates/people/120926038.jpg",
+      "sha256": "20421ffae12c7b4d1cd6044a555a4746f102be6b04683cb9a3e640cc620b0813",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999988079071045
+    },
+    {
+      "path": "my_dataset/test_candidates/people/76164455.jpg",
+      "sha256": "813fdd10212ab941269d9c5f92c6ce89950ac599fc906a5de902267a62e59b52",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999997615814209
+    },
+    {
+      "path": "my_dataset/test_candidates/people/93900064.jpg",
+      "sha256": "685c19a72d5cda200e03f2af69a4fd2be459e6c3a66767d773aee064a55cb4a5",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999827146530151
+    },
+    {
+      "path": "my_dataset/test_candidates/people/130271936.jpg",
+      "sha256": "fa24157ee7213e5a190cad5b8bcc404bdae362b5b0954d37c217f1a1b13504e9",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999195337295532
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147560087.jpg",
+      "sha256": "483bc830603eba7b5e27baca3b6418d1ba8f492ac694a2b6dec6d6e1553848ba",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9987741112709045
+    },
+    {
+      "path": "my_dataset/test_candidates/people/154099398.jpg",
+      "sha256": "d5e05198cdbf948422b3f4a75384f554a22452a886a3864b47a72eef803439e6",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.987130343914032
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60500535.jpg",
+      "sha256": "2e96806181fa970a1fef25dd211becf0f2b9f6e6a76cb32605f8f1a25d57f872",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9997329115867615
+    },
+    {
+      "path": "my_dataset/test_candidates/people/145633922.jpg",
+      "sha256": "279aa73048b872db1888488968efe17f8827b67b35bbcd0800d4792cd7dc6020",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999979734420776
+    },
+    {
+      "path": "my_dataset/test_candidates/people/179564425.jpg",
+      "sha256": "ad84f98ea5e25a77cddd0118d0d2b1ed8f9ddc6a78b21c13cda69312d349e3bd",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.973520040512085
+    },
+    {
+      "path": "my_dataset/test_candidates/people/92661702.jpg",
+      "sha256": "a1f48a45f8bd9612c93c1e971da9a5a6fcfdfb277eaa0c06aeee606b9bf1ef40",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999282360076904
+    },
+    {
+      "path": "my_dataset/test_candidates/people/81731090.jpg",
+      "sha256": "bb57bf7bd5b3792e0ed2c2536efe1954fd7810443ec0e722f21fea980cc9831c",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999992847442627
+    },
+    {
+      "path": "my_dataset/test_candidates/people/4740538.jpg",
+      "sha256": "cc7c06cf8ea8a97ae38a6bb5adf19c6f62765a70eb74e57e532cd1329718fab7",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.8517241477966309
+    },
+    {
+      "path": "my_dataset/test_candidates/people/45189695.jpg",
+      "sha256": "2215505eac4c395be45ef5c21a6151a69a6f070ed60393238eb5320fab620383",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.992610514163971
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147560080.jpg",
+      "sha256": "023bfcd56a1b1d007c5d1373b67a4a345abc6c9138f5b6cf016a873c06627e72",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9998304843902588
+    },
+    {
+      "path": "my_dataset/test_candidates/people/113220795.jpg",
+      "sha256": "33d3c85ed340ac0756012c4ca0b0356078fe835cd8843e21e7c2dc06d9e77708",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999728202819824
+    },
+    {
+      "path": "my_dataset/test_candidates/people/115355228.jpg",
+      "sha256": "57a53169114ea6ebf7c7ead5055c2821ceb18caa0c60912c4d71e1b5e2bd9888",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.6963598132133484
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38864270.jpg",
+      "sha256": "12db5b9286ae51246aea1c3359ede4bf5f2bb79229708da9def7564635ec0756",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999990463256836
+    },
+    {
+      "path": "my_dataset/test_candidates/people/150168306.jpg",
+      "sha256": "3855a79bdc40b948d770b686a791561bbf9dd645c678d57701122a0b51d3f1c2",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999955892562866
+    },
+    {
+      "path": "my_dataset/test_candidates/people/112543554.jpg",
+      "sha256": "8dc24b4a831f4db1b98e275cea3cc410f9010eabacb16dafc20c42c192735901",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999716281890869
+    },
+    {
+      "path": "my_dataset/test_candidates/people/108057575.jpg",
+      "sha256": "92e921bea8cb96c60b1f050a59b7e3c7df81fb685acaec26cfffa7565143817a",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999978542327881
+    },
+    {
+      "path": "my_dataset/test_candidates/people/176080932.jpg",
+      "sha256": "17db963bd4b392d56e034452e4275b5040cf166b8712f490c04d9d45aa8dc1b5",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999544084072113
+    },
+    {
+      "path": "my_dataset/test_candidates/people/12370796.jpg",
+      "sha256": "0ee3aced9bdb6d031e1c2c4a900a7da34b7fb3e050bd3c6d77696cb713fd3ef7",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999875545501709
+    },
+    {
+      "path": "my_dataset/test_candidates/people/157464522.jpg",
+      "sha256": "32017dffa121b61739497e98a9111a837d53ed8616c38679cbe4aef5de2ae9c4",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999440908432007
+    },
+    {
+      "path": "my_dataset/test_candidates/people/46457765.jpg",
+      "sha256": "59355d3f0da936fe6ec952ae215ed4e5cacfe1103444f28db4c12aff6851d047",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999864101409912
+    },
+    {
+      "path": "my_dataset/test_candidates/people/115355226.jpg",
+      "sha256": "80fe30db06d6821719af133858226e0be7b015f8a007d342fa1ab84881e0a3f0",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9615170955657959
+    },
+    {
+      "path": "my_dataset/test_candidates/people/20682671.png",
+      "sha256": "9d1f58f3cf807c532ef951565536acd7ccd34b2f31fe171628ab9c1825dfc95e",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999957799911499
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147528384.jpg",
+      "sha256": "65b65c016d15dc6c80a4a8b39e6c3e8b397d29fb699ea92ee538311bfb8ebade",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999182403087616
+    },
+    {
+      "path": "my_dataset/test_candidates/people/83444254.jpg",
+      "sha256": "dbab3310019cb754d09681d73da9828eb735ad10668392d99bbf0382d833aa10",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999929666519165
+    },
+    {
+      "path": "my_dataset/test_candidates/people/19078578.jpg",
+      "sha256": "12758631d4ae1cef16110d9c646b1deb8a6a6c1a13a7c19316a669af9664a65e",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999998807907104
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147528374.jpg",
+      "sha256": "44e0c74f531a8e70da8fa3771c7cae875f9f3bf30e94e86ec2d30df7d5292416",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.8855653405189514
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38884417.jpg",
+      "sha256": "830185b62c8f9ae28376c63ddf6e22ade93d225589c5b31b3e9b11766e1bcb0d",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999903440475464
+    },
+    {
+      "path": "my_dataset/test_candidates/people/492288.jpg",
+      "sha256": "49c0d7be9aff92e304694acde4a09d8ba1e73cc761773ae227cc0ae42658cd06",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999818801879883
+    },
+    {
+      "path": "my_dataset/test_candidates/people/115355222.jpg",
+      "sha256": "19492d9a5875b949d3e3b263ac1757765e701ca01b6921432ca0273d39a53954",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9997979998588562
+    },
+    {
+      "path": "my_dataset/test_candidates/people/111487914.jpg",
+      "sha256": "f0689d9eed94235f6ae50c00e1869210f41285a169d74985e1c0089f55f7d369",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999966621398926
+    },
+    {
+      "path": "my_dataset/test_candidates/people/182508150.jpg",
+      "sha256": "039a771f50ba8a64e74c10e851fa07c3fa92b77a452fb384a27059043d34a948",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9886364340782166
+    },
+    {
+      "path": "my_dataset/test_candidates/people/115355224.jpg",
+      "sha256": "d0615975261568df650bed59b465bda323dc764089f6ab5e240efd39c4da156e",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9017189145088196
+    },
+    {
+      "path": "my_dataset/test_candidates/people/61291051.jpg",
+      "sha256": "a41b7b939c87e45fa33a945c7ad03e5e439e9ec6d44c19f0fc7587e6395347c2",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999921321868896
+    },
+    {
+      "path": "my_dataset/test_candidates/people/110161624.jpg",
+      "sha256": "ebaa31d4e3d592b5f099542b23b639beb6055ea9939cdfb3439587c1b5c91d17",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999972939491272
+    },
+    {
+      "path": "my_dataset/test_candidates/people/138415102.jpg",
+      "sha256": "bfc82fb88a1160a41c90220660e727c910bc4b6877e246c9565e2436ecc161cf",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9817607998847961
+    },
+    {
+      "path": "my_dataset/test_candidates/people/154693178.jpg",
+      "sha256": "0ec16ec502b8a33a882c86debd881baaf52e0191ffa1f2a78bf59d73cdc71fdc",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 1.0
+    },
+    {
+      "path": "my_dataset/test_candidates/people/50279384.jpg",
+      "sha256": "75e4ec463616ea3fb3d9a0dce92c1d872f7f452ae9322d6bdf99b7a6c5d3c89c",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9967677593231201
+    },
+    {
+      "path": "my_dataset/test_candidates/people/22178664.jpg",
+      "sha256": "9027c96d50241a8fce482fb6cecce7907c9c319ec654f469fb244bd3e0a503ce",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999172687530518
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38867718.jpg",
+      "sha256": "0fae2bb41a9a2cf0ebcbfe4f5d5d3fc0fbd2926922afaa6a8502ce951b65bc60",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999998807907104
+    },
+    {
+      "path": "my_dataset/test_candidates/people/115355223.jpg",
+      "sha256": "1a2fd6c0cd28bc3a0353ec9bf24671b737b83806c6a311a8aaad7ba9999d8eaf",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9745773077011108
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38885686.jpg",
+      "sha256": "94c10d36142a9c13f5c837ba0aea9a6f299b39add7416171e931c872d315e2e6",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999959468841553
+    },
+    {
+      "path": "my_dataset/test_candidates/people/65534753.jpg",
+      "sha256": "21454792e8b4a38c682711185a9ab2d897b438699ea8566badec9a5abedd61aa",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999996423721313
+    },
+    {
+      "path": "my_dataset/test_candidates/people/201278746.jpg",
+      "sha256": "e5af685c1555aa95c7971064f1f95e9f09114a1153a4b572e2ee9420c1759bf4",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999788999557495
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60415135.jpg",
+      "sha256": "d77d1f91585df4470dded055f1c3625fdbb713109667cae500084232252a0ffe",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999967813491821
+    },
+    {
+      "path": "my_dataset/test_candidates/people/132957807.jpg",
+      "sha256": "40b77dd32a035ffdd57bd394953d44d34b1ce7ad2a2869715f0fdb3e36110896",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999939203262329
+    },
+    {
+      "path": "my_dataset/test_candidates/people/91955701.jpg",
+      "sha256": "64a49be3b94d258c1d932af6cb1e5a4d6daa684995df87be25cd157e5cb6d837",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999996423721313
+    },
+    {
+      "path": "my_dataset/test_candidates/people/123373.jpg",
+      "sha256": "b20b9fe969c2a690082f7b66b55e1ed63baeb4c96cad4b28a8a5dba7a2910404",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999971389770508
+    },
+    {
+      "path": "my_dataset/test_candidates/people/65539409.jpg",
+      "sha256": "d85b86dfdeeea3c0989c3eb3d8e2958945921f76ca8243e04807e2560d5e14dd",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999995231628418
+    },
+    {
+      "path": "my_dataset/test_candidates/people/61117478.jpg",
+      "sha256": "890df74580d5f8a6413699ee101a7fcecb572168d10fcbbef06a2522857b9b5b",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999976396560669
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60496989.jpg",
+      "sha256": "32b9410859c1339de41a981f90a0033d7fecb57383886af2f11a71a04f315f8f",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999998927116394
+    },
+    {
+      "path": "my_dataset/test_candidates/people/154759710.jpg",
+      "sha256": "1ee2d97e642843e4e473c5bd2230f739f1bfd9cf4f0a1c6be5bfc715117ea878",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999973773956299
+    },
+    {
+      "path": "my_dataset/test_candidates/people/77782733.jpg",
+      "sha256": "ddf2987b84a3d8dc3e12cfe138df72c05288f2c28382e18369c7ce60fcbf8b43",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999997615814209
+    },
+    {
+      "path": "my_dataset/test_candidates/people/26480756.jpg",
+      "sha256": "39424344369b20e2f52459c124bcdcf745dd7c7e4da0bb54a7856d96655c16ed",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9998617172241211
+    },
+    {
+      "path": "my_dataset/test_candidates/people/27424290.jpg",
+      "sha256": "4f29177ca3119f63b42db7131c9eefb40f3f40ab40adbc4a8063b059d29c8dc6",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9997572302818298
+    },
+    {
+      "path": "my_dataset/test_candidates/people/49268884.jpg",
+      "sha256": "539e31df27d1cd57b626da3f57dbacad4d84167c62ce025f0d5689f46f7e7d34",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999959468841553
+    },
+    {
+      "path": "my_dataset/test_candidates/people/14329747.jpg",
+      "sha256": "523351fb33c13bc185dd1799dabcebab4ee7e7eac8bb2a92e72c79ffe7ccbd42",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.6421951651573181
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147528408.jpg",
+      "sha256": "585e25848ba9ce68fd24bf33b6f311c7d9a3429b2b23698037dbd0e8ea0c4c47",
+      "expected": "people",
+      "predicted": "animals",
+      "confidence": 0.9527825117111206
+    },
+    {
+      "path": "my_dataset/test_candidates/people/22394631.jpg",
+      "sha256": "9b004cb03c3f649c7c74aa93835160ed3ec8e99c8da502db43eb408bd71040af",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999873638153076
+    },
+    {
+      "path": "my_dataset/test_candidates/people/2907639.jpg",
+      "sha256": "399b34d06fd21986f8e6fb7ddb1bab2e63d778981125d0d181a3ae2f5a16bf5f",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999990463256836
+    },
+    {
+      "path": "my_dataset/test_candidates/people/139217943.jpg",
+      "sha256": "75ad95f862294b8b45d4e66ca2873421378057f184775c5d4c31928a8913d4f3",
+      "expected": "people",
+      "predicted": "animals",
+      "confidence": 0.9747593998908997
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38894980.jpg",
+      "sha256": "e32c3cd90282adf103781908a7e61059d3f1260bdbf58f88ca6185918ec7f5ec",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999953508377075
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147528391.jpg",
+      "sha256": "f11b8361d5e5a0c15aef1fa792a79af4016f64ee47ea59da13ffa040ca51d37b",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9987208247184753
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60494778.jpg",
+      "sha256": "c673e46f5713564e67387799a312c1a9221982f631e3ec58d8a72bef6e290182",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9993834495544434
+    },
+    {
+      "path": "my_dataset/test_candidates/people/159013979.jpg",
+      "sha256": "ad9769b2568af1102d5940be74e5b5f80e4ccd69a6b21937a23f444f6941aaa1",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999539852142334
+    },
+    {
+      "path": "my_dataset/test_candidates/people/13053679.jpg",
+      "sha256": "86f1a5fff7c5d1190bbd8171ea7ef6ba366429a450cb932aadbef9da91200d78",
+      "expected": "people",
+      "predicted": "animals",
+      "confidence": 0.5468382239341736
+    },
+    {
+      "path": "my_dataset/test_candidates/people/110765769.jpg",
+      "sha256": "611e69aa0d4684fc86212cb81c5e5c2566e8e6afd72b133d27fc2985be9537f0",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999998807907104
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60495812.jpg",
+      "sha256": "6b49713d4fe606eda3754dd6e4ff183b59e24372efbdd8004d31dac0e8b8df1f",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999653100967407
+    },
+    {
+      "path": "my_dataset/test_candidates/people/147528398.jpg",
+      "sha256": "8d551e9b0fcfe33034ab6cd00b11a8fc809475a508d0f1be24b7b88a26ea874d",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9990487694740295
+    },
+    {
+      "path": "my_dataset/test_candidates/people/54246500.jpg",
+      "sha256": "d7b64967df986d61166993679ebba19e7c2f59638714befbcf14a035f442da51",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999995231628418
+    },
+    {
+      "path": "my_dataset/test_candidates/people/128639416.jpg",
+      "sha256": "188b0999602a299cd84f8cb1d51f9d5d10b3f77a4fea9f400acb1e74fc1076e5",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999966621398926
+    },
+    {
+      "path": "my_dataset/test_candidates/people/2127822.jpg",
+      "sha256": "725ce24a2f4d1d98fdb027c7760bf69e25558c18e0734c9d7dae98faaaf49230",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9966278672218323
+    },
+    {
+      "path": "my_dataset/test_candidates/people/130335077.jpg",
+      "sha256": "7299b8efc1a83897bff7edad96e876c291476c75dc320c9bc0b2dade30ee4f94",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999867677688599
+    },
+    {
+      "path": "my_dataset/test_candidates/people/9570842.jpg",
+      "sha256": "c7a094bc139a8df99ea84fad8a7b9fdb2fec6699b6050764c1dfcad01990dd63",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999583959579468
+    },
+    {
+      "path": "my_dataset/test_candidates/people/42655369.jpg",
+      "sha256": "750f832db7a152073b129e1962176c373d6cb7e84749643efe1f8357b141a9c4",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999667406082153
+    },
+    {
+      "path": "my_dataset/test_candidates/people/99753828.jpg",
+      "sha256": "109cf4d2c2598a6be8f0e08732a4ecae6d717bb33b61c90aa1b6afc210c7a143",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9960182309150696
+    },
+    {
+      "path": "my_dataset/test_candidates/people/82249988.jpg",
+      "sha256": "7ec3e4322c1c30550654a5d71e3a445389c7e36f0f2a5dcc2412c8e9b777bb28",
+      "expected": "people",
+      "predicted": "animals",
+      "confidence": 0.8767955303192139
+    },
+    {
+      "path": "my_dataset/test_candidates/people/73463874.jpg",
+      "sha256": "90c9b7c99ef49655fafc9058ecf734466c4cd0062311cb20bec2dbd042b0fa58",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.999584972858429
+    },
+    {
+      "path": "my_dataset/test_candidates/people/116771591.jpg",
+      "sha256": "5f717f6fff79a9fc6a4e249eb999079c553f94130fec0eb629c80d4203ed9aec",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999991655349731
+    },
+    {
+      "path": "my_dataset/test_candidates/people/77356781.jpg",
+      "sha256": "ad7a166c92e2e6be82fe3f6939f639f8fc5a5083062308571f73d57289c56005",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9998431205749512
+    },
+    {
+      "path": "my_dataset/test_candidates/people/60498978.jpg",
+      "sha256": "0a1f3e148aa27337155f906cfdd74a34ebb1a207ba223de381ba5c130a0e94be",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999169111251831
+    },
+    {
+      "path": "my_dataset/test_candidates/people/38885167.jpg",
+      "sha256": "b123b78f76949809c1818de27f4212123e1f53a9377bce1cc39514d7e9148fc4",
+      "expected": "people",
+      "predicted": "people",
+      "confidence": 0.9999861717224121
+    }
+  ],
+  "data_path": "my_dataset/test_candidates",
+  "label_source": "directory_names_not_manually_verified",
+  "diagnostics": {
+    "matches": 172,
+    "mismatches": 284,
+    "predicted_counts": {
+      "animals": 105,
+      "city": 0,
+      "documents": 19,
+      "nature": 0,
+      "people": 332
+    },
+    "mean_confidence": 0.9448257396487814,
+    "confidence_at_least_0_9": 381,
+    "mismatches_with_confidence_at_least_0_9": 229,
+    "agreement_among_confidence_at_least_0_9": 0.3989501312335958,
+    "majority_directory_label_baseline_accuracy": 0.21929824561403508,
+    "label_review_status": "unreviewed",
+    "independence": "unverified"
+  }
+}

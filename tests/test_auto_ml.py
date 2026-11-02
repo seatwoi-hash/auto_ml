@@ -68,3 +68,41 @@ def test_checkpoint_contains_safe_runtime_metadata(tmp_path):
     assert checkpoint["classifier_head"] == {"type": "linear"}
     assert checkpoint["class_names"] == ["animals", "nature"]
     assert checkpoint["training"]["validation_accuracy"] == 0.75
+
+
+def test_training_pipeline_can_write_a_separate_candidate(tmp_path, monkeypatch):
+    import auto_ml
+
+    data = tmp_path / "training"
+    for label, color in [("animals", "red"), ("nature", "green")]:
+        folder = data / label
+        folder.mkdir(parents=True)
+        for index in range(20):
+            Image.new("RGB", (8, 8), color=color).save(folder / f"{index}.png")
+
+    # Exercise real optimization/training with a tiny network, without downloads.
+    monkeypatch.setattr(
+        auto_ml,
+        "build_model",
+        lambda num_classes: torch.nn.Sequential(
+            torch.nn.AdaptiveAvgPool2d(1),
+            torch.nn.Flatten(),
+            torch.nn.Linear(3, num_classes),
+        ),
+    )
+    active = tmp_path / "active.pth"
+    active.write_bytes(b"unchanged production model")
+    candidate = tmp_path / "candidate.pth"
+    auto_ml.main(
+        TrainingConfig(
+            data_dir=data,
+            output_path=candidate,
+            trials=1,
+            tuning_epochs=1,
+            final_epochs=1,
+        )
+    )
+    checkpoint = torch.load(candidate, weights_only=True)
+    assert checkpoint["class_names"] == ["animals", "nature"]
+    assert 0 <= checkpoint["training"]["validation_accuracy"] <= 1
+    assert active.read_bytes() == b"unchanged production model"

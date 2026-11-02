@@ -249,12 +249,6 @@
         <!-- Сетка превью -->
         <div class="previews-grid" id="previewsGrid"></div>
 
-        <label for="apiKey" style="display: block; margin-top: 20px; color: #475569;">
-            API key
-        </label>
-        <input id="apiKey" type="password" autocomplete="current-password"
-               style="display: block; width: 100%; margin-top: 6px; padding: 10px;">
-
         <!-- Статистика и кнопки -->
         <div class="upload-stats" id="uploadStats" style="display: none;">
             <div class="stats-text" id="statsText"></div>
@@ -264,6 +258,11 @@
             </div>
         </div>
 
+        <label style="display:block;margin-top:16px">
+            <input type="checkbox" id="collectFeedback">
+            Сохранить копии для улучшения модели и проверить категории
+        </label>
+        <div id="feedbackResults"></div>
         <!-- Прогресс загрузки -->
         <div class="progress-container" id="progressContainer"></div>
 
@@ -280,7 +279,6 @@
         const clearBtn = document.getElementById('clearBtn');
         const message = document.getElementById('message');
         const progressContainer = document.getElementById('progressContainer');
-        const apiKeyInput = document.getElementById('apiKey');
 
         let selectedFiles = []; // Массив выбранных файлов
 
@@ -395,12 +393,6 @@
         // Загрузка всех файлов
         uploadBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) return;
-            const apiKey = apiKeyInput.value.trim();
-            if (!apiKey) {
-                showMessage('Введите API key', 'error');
-                return;
-            }
-
             uploadBtn.disabled = true;
             clearBtn.disabled = true;
             progressContainer.style.display = 'block';
@@ -436,17 +428,20 @@
                 const file = selectedFiles[i];
                 const formData = new FormData();
                 formData.append('files', file);
+                formData.append('collect_feedback', document.getElementById('collectFeedback').checked);
 
                 try {
                     const response = await fetch('/upload/', {
                         method: 'POST',
-                        headers: {'X-API-Key': apiKey},
                         body: formData
                     });
 
                     const payload = await response.json();
                     if (response.ok && payload.success === 1 && payload.errors.length === 0) {
                         successCount++;
+                        if (payload.files[0]?.feedback_id) {
+                            addFeedback(payload.files[0], file);
+                        }
                         updateProgressBar(progresses[i].fill, 100);
                         showMessage(`Загружено ${successCount} из ${selectedFiles.length}`, 'success');
                     } else {
@@ -480,6 +475,48 @@
                 clearBtn.disabled = false;
             }, 500);
         });
+
+        function addFeedback(result, file) {
+            const row = document.createElement('div');
+            row.style.marginTop = '16px';
+            const image = document.createElement('img');
+            const imageUrl = URL.createObjectURL(file);
+            image.src = imageUrl;
+            image.onload = () => URL.revokeObjectURL(imageUrl);
+            image.style.width = '120px';
+            image.alt = 'Изображение для проверки категории';
+            const title = document.createElement('p');
+            title.textContent = `${result.original_name}: модель выбрала ${result.class_name}`;
+            const select = document.createElement('select');
+            for (const category of ['animals', 'city', 'documents', 'nature', 'people']) {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                select.appendChild(option);
+            }
+            select.value = result.class_name;
+            const button = document.createElement('button');
+            button.textContent = 'Подтвердить выбранную категорию';
+            const status = document.createElement('span');
+            button.onclick = async () => {
+                button.disabled = true;
+                try {
+                    const response = await fetch(`/feedback/${result.feedback_id}`, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({class_name: select.value})
+                    });
+                    if (!response.ok) throw new Error('Не удалось сохранить метку');
+                    status.textContent = ' Метка сохранена. Файл в Nextcloud не перемещается.';
+                } catch (error) {
+                    status.textContent = ' Ошибка сохранения. Попробуйте ещё раз.';
+                } finally {
+                    button.disabled = false;
+                }
+            };
+            row.append(image, title, select, button, status);
+            document.getElementById('feedbackResults').appendChild(row);
+        }
 
         function updateProgressBar(element, percent, color = null) {
             element.style.width = percent + '%';

@@ -24,7 +24,7 @@ services:
       NEXTCLOUD_URL: http://nextcloud:80
       NEXTCLOUD_USER: ${NEXTCLOUD_USER:?NEXTCLOUD_USER must be set}
       NEXTCLOUD_PASSWORD: ${NEXTCLOUD_PASSWORD:?NEXTCLOUD_PASSWORD must be set}
-      API_KEY: ${API_KEY:?API_KEY must be set}
+      FEEDBACK_DIR: /app/feedback_data
       MODEL_PATH: /app/model.pth
       MAX_FILE_SIZE: ${MAX_FILE_SIZE:-10485760}
       MAX_FILES_PER_REQUEST: ${MAX_FILES_PER_REQUEST:-20}
@@ -45,6 +45,7 @@ services:
     volumes:
       - ./model_checkpoint.pth:/app/model.pth:ro
       - uploads_data:/app/uploads
+      - feedback_data:/app/feedback_data
     networks:
       - app-network
     restart: unless-stopped
@@ -101,3 +102,4 @@ volumes:
   nextcloud_data:
   nextcloud_config:
   uploads_data:
+  feedback_data:

@@ -8,7 +8,7 @@ class Settings(BaseModel):
     nextcloud_url: HttpUrl
     nextcloud_user: str = Field(min_length=1)
     nextcloud_password: str = Field(min_length=1)
-    api_key: str = Field(min_length=16)
+    feedback_dir: Path = Path("feedback_data")
     model_path: Path = Path("model_checkpoint.pth")
     max_file_size: int = Field(default=10 * 1024 * 1024, gt=0)
     max_files_per_request: int = Field(default=20, ge=1, le=100)
@@ -30,7 +30,7 @@ def load_settings() -> Settings:
         nextcloud_url=os.getenv("NEXTCLOUD_URL", ""),
         nextcloud_user=os.getenv("NEXTCLOUD_USER", ""),
         nextcloud_password=os.getenv("NEXTCLOUD_PASSWORD", ""),
-        api_key=os.getenv("API_KEY", ""),
+        feedback_dir=Path(os.getenv("FEEDBACK_DIR", "feedback_data")),
         model_path=Path(os.getenv("MODEL_PATH", "model_checkpoint.pth")),
         max_file_size=int(os.getenv("MAX_FILE_SIZE", str(10 * 1024 * 1024))),
         max_files_per_request=int(os.getenv("MAX_FILES_PER_REQUEST", "20")),

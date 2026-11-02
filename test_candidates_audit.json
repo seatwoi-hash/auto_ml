@@ -1,0 +1,39 @@
+{
+  "collection_date": "2026-11-02",
+  "status": "partial_documents_stopped_on_http_429",
+  "source": "Wikimedia Commons",
+  "counts": {
+    "animals": 100,
+    "city": 100,
+    "documents": 56,
+    "nature": 100,
+    "people": 100
+  },
+  "downloaded": 456,
+  "train_files_hashed": 70228,
+  "exact_sha256_overlaps": [],
+  "near_duplicate_check": "not_performed",
+  "labels": "unreviewed_search_candidates",
+  "independence": "unverified",
+  "manifest_path": "my_dataset/test_candidates/manifest.json",
+  "last_retry": {
+    "started_at_utc": "2026-11-02T06:53:11Z",
+    "finished_at_utc": "2026-11-02T06:54:27.254416+00:00",
+    "downloaded_before": 219,
+    "downloaded_after": 229,
+    "added": 10,
+    "outcome": "stopped_on_http_429",
+    "automation_status": "PAUSED",
+    "further_retries_scheduled": false
+  },
+  "last_collection": {
+    "category": "documents",
+    "added": 10,
+    "finished_at_utc": "2026-11-02T13:15:22.861698+00:00",
+    "outcome": "stopped_on_http_429",
+    "image_validation": "all 456 files verified by Pillow and SHA-256",
+    "review_status": "unreviewed",
+    "independence": "unverified",
+    "further_retries_scheduled": false
+  }
+}

@@ -25,7 +25,7 @@ flowchart LR
 
 Основные компоненты:
 
-- `app.py` — HTTP API, авторизация, валидация файлов и lifecycle приложения;
+- `app.py` — HTTP API, валидация файлов и lifecycle приложения;
 - `service_ml.py` — безопасная загрузка checkpoint и inference;
 - `nextcloud_service.py` — асинхронная интеграция с Nextcloud;
 - `auto_ml.py` — обучение, подбор гиперпараметров и оценка модели;
@@ -78,8 +78,6 @@ CPU-вычисления не блокировали event loop FastAPI.
 
 Добавлены:
 
-- обязательная API-key авторизация через заголовок `X-API-Key`;
-- безопасное сравнение ключа через `secrets.compare_digest`;
 - Pydantic-модели ответов;
 - единый валидируемый объект настроек;
 - ограничение размера и количества файлов;
@@ -213,6 +211,12 @@ poetry run pytest
 
 `.venv/` добавлен в `.gitignore` и `.dockerignore`.
 
+## Доступ к API
+
+Пользовательская авторизация пока не реализована. Файловые маршруты доступны
+без входа, включая просмотр, загрузку и удаление. Учётные данные Nextcloud
+используются сервером для доступа к хранилищу.
+
 ## Настройка окружения
 
 Создайте локальный файл конфигурации:
@@ -228,7 +232,6 @@ cp .env.example .env
 | `NEXTCLOUD_DB_PASSWORD` | пароль PostgreSQL Nextcloud |
 | `NEXTCLOUD_USER` | пользователь Nextcloud |
 | `NEXTCLOUD_PASSWORD` | пароль пользователя Nextcloud |
-| `API_KEY` | ключ доступа к файловому API, минимум 16 символов |
 | `CORS_ORIGINS` | разрешённые origin через запятую |
 | `MAX_FILE_SIZE` | максимальный размер файла в байтах |
 | `MAX_FILES_PER_REQUEST` | максимальное число файлов в запросе |
@@ -252,10 +255,10 @@ docker compose up -d --build
 - liveness: <http://localhost:8877/health/live>;
 - readiness: <http://localhost:8877/health/ready>.
 
-Для защищённых маршрутов передавайте ключ:
+Проверка списка файлов:
 
 ```bash
-curl -H "X-API-Key: $API_KEY" http://localhost:8877/files/
+curl http://localhost:8877/files/
 ```
 
 ## Тестирование
@@ -264,10 +267,10 @@ curl -H "X-API-Key: $API_KEY" http://localhost:8877/files/
 poetry run pytest
 ```
 
-На момент последней проверки проходят 51 unit-тест. Они покрывают:
+На момент последней проверки проходят 87 тестов. Они покрывают:
 
 - FastAPI-функции и файловые операции;
-- авторизацию и health endpoints;
+- health endpoints;
 - ML inference и формат checkpoint;
 - training pipeline;
 - retry и ошибки Nextcloud;
@@ -283,3 +286,25 @@ poetry run ruff format --check .
 poetry run pytest
 poetry run pre-commit run --all-files --hook-stage pre-push
 ```
+
+## Контроль метрик модели
+
+Расчёт метрик и история запусков описаны в [MODEL_METRICS.md](MODEL_METRICS.md).
+Сценарий [повторного обучения при деградации](RETRAINING.md) сравнивает два
+проверенных периода и при ухудшении может обучить отдельного кандидата.
+Действующие веса автоматически не заменяются. Блокирующая проверка абсолютных
+метрик перед деплоем удалена; в CI остаются тесты кода и сборка Docker.
+
+## Материалы проекта
+
+- [Краткая Model Card](model_card.md).
+- [Простая схема применения модели](Model_BPMN.md).
+- [Простая схема повторного обучения и публикации](Model_retrain_BPMN.md).
+- [Презентация проекта в PDF](output/pdf/PhotoDistribution_MLOps_final.pdf).
+- [Редактируемая презентация](output/presentation/PhotoDistribution_MLOps_final.pptx).
+
+## Сбор данных для переобучения
+
+В форме загрузки можно разрешить сохранение копий для обучения, затем подтвердить
+или исправить категории. Метки сохраняются отдельно от прогнозов в SQLite.
+Выгрузка кандидатов, проверка данных и схема процесса: [Model_retrain_BPMN.md](Model_retrain_BPMN.md).
